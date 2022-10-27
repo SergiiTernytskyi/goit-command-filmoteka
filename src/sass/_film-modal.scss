@@ -1,7 +1,7 @@
 .backdrop-film-modal {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.56);
+  background-color: rgba(0, 0, 0, 0.25);
   position: fixed;
   top: 0;
   left: 0;
@@ -10,16 +10,30 @@
 }
 
 .film-modal {
-  width: 280px;
+  width: 88vw;
+  max-width: 704px;
   height: 93%;
   background-color: var(--main-light-color);
-  margin: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  padding-top: 48px;
+  padding: 48px 20px;
   position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   overflow-y: scroll;
+
+  @include tablet {
+    width: 704px;
+    height: 552px;
+    padding: 40px 72px 40px 40px;
+    overflow-y: unset;
+  }
+
+  @include desktop {
+    width: 806px;
+    max-width: 806px;
+    height: 558px;
+    padding: 40px 12px;
+  }
 }
 
 .film-modal__close-btn {
@@ -36,29 +50,64 @@
 
 .film-modal__close-icon {
   stroke: var(--main-dark-color);
-  transition: stroke 250ms linear;
+  transition: stroke 250ms var(--timing-function);
   &:hover,
   &:focus {
     stroke: var(--accent-color);
   }
 }
 
+.film-modal__card {
+  @include tablet {
+    display: flex;
+  }
+}
+
 .film-modal__img {
-  //   margin-top: 48px;
   background-color: var(--accent-color);
-  width: 240px;
+  min-width: 240px;
+  max-width: 300px;
   height: 357px;
   margin-bottom: 20px;
   border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+  @include tablet {
+    width: 264px;
+    height: 374px;
+    margin-right: 68px;
+  }
+
+  @include desktop {
+    width: 375px;
+    max-width: 375px;
+    height: 478px;
+    margin-right: 16px;
+  }
 }
 
 .film-modal__title {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 1.15;
+  @include font(500, 20px, 1.15);
+  text-transform: uppercase;
   color: var(--main-dark-color);
   margin-bottom: 20px;
+
+  @include responsive {
+    text-align: center;
+  }
+
+  @include desktop {
+    @include font(500, 30px, 1.17);
+  }
+}
+
+.film-modal__list-container {
+  @include responsive {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .film-modal__list {
@@ -87,20 +136,33 @@
   &:last-child .film-modal__info-sub-title {
     margin-right: 76px;
   }
+
+  @include desktop {
+    &:first-child .film-modal__info-sub-title {
+      margin-right: 85px;
+    }
+
+    &:nth-child(2) .film-modal__info-sub-title {
+      margin-right: 97px;
+    }
+
+    &:nth-child(3) .film-modal__info-sub-title {
+      margin-right: 83px;
+    }
+
+    &:last-child .film-modal__info-sub-title {
+      margin-right: 120px;
+    }
+  }
 }
 
 .film-modal__info-sub-title {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
+  @include font(500, 12px, 1.33);
   color: #8c8c8c;
-  // flex-grow: 1;
 }
 
 .film-modal__info-text {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
+  @include font(500, 12px, 1.33);
   color: var(--main-dark-color);
 }
 
@@ -121,45 +183,91 @@
 }
 
 .film-modal__about-title {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
+  @include font(500, 12px, 1.33);
   margin-bottom: 8px;
 }
 
 .film-modal__about-text {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.67;
+  @include font(500, 12px, 1.67);
   margin-bottom: 20px;
+
+  @include tablet {
+    overflow-y: scroll;
+    height: 236px;
+    width: 264px;
+  }
+
+  @include desktop {
+    width: 391px;
+    height: 160px;
+    overflow-y: unset;
+  }
 }
 
 .film-modal__btn-container {
   display: flex;
   justify-content: space-between;
+
+  @include responsive {
+    justify-content: center;
+  }
+
+  @include desktop {
+    margin-left: 8px;
+    display: block;
+  }
 }
 
 .film-modal__btn {
   width: 110px;
   height: 44px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
+  padding: 0px 8px;
+  @include font(500, 12px, 1.33);
   text-align: center;
   text-transform: uppercase;
 
   border: none;
   outline: none;
   border-radius: 5px;
+
+  @include tablet {
+    width: 125px;
+  }
+
+  @include desktop {
+    width: 136px;
+  }
 }
 
 .film-modal__watch-btn {
   color: var(--main-light-color);
   background-color: var(--accent-color);
+  transition: color 250ms var(--timing-function);
+
+  &:hover,
+  &:focus {
+    color: var(--main-dark-color);
+  }
+
+  @include responsive {
+    margin-right: 15px;
+  }
+
+  @include desktop {
+    margin-right: 15px;
+  }
 }
 
 .film-modal__queue-btn {
   color: var(--main-dark-color);
   background-color: transparent;
   border: 1px solid var(--main-dark-color);
+  transition: color 250ms var(--timing-function),
+    border-color 250ms var(--timing-function);
+
+  &:hover,
+  &:focus {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+  }
 }
