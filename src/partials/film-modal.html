@@ -1,4 +1,4 @@
-<div class="backdrop-film-modal">
+<div class="backdrop-film-modal is-hidden">
   <div class="film-modal">
     <button type="button" class="film-modal__close-btn">
       <svg class="film-modal__close-icon" width="30" height="30">
@@ -8,50 +8,58 @@
     <div class="film-modal__container">
       <!-- create markup -->
       <div class="film-modal__card">
-        <img src="#" alt="photo" class="film-modal__img" />
-        <h2 class="film-modal__title">A FISTFUL OF LEAD</h2>
-        <ul class="film-modal__list list">
-          <li class="film-modal__item">
-            <p class="film-modal__info-sub-title">Vote / Votes</p>
-            <p class="film-modal__info-text">
-              <span class="film-modal__info-text-vote">7.3</span> /
-              <span class="film-modal__info-text-votes">1260</span>
-            </p>
-          </li>
-          <li class="film-modal__item">
-            <p class="film-modal__info-sub-title">Popularity</p>
-            <p class="film-modal__info-text">100.2</p>
-          </li>
-          <li class="film-modal__item">
-            <p class="film-modal__info-sub-title">Original Title</p>
-            <p class="film-modal__info-text">A FISTFUL OF LEAD</p>
-          </li>
-          <li class="film-modal__item">
-            <p class="film-modal__info-sub-title">Genre</p>
-            <p class="film-modal__info-text">Western</p>
-          </li>
-        </ul>
-        <h3 class="film-modal__about-title">About</h3>
-        <p class="film-modal__about-text">
-          Four of the West’s most infamous outlaws assemble to steal a huge
-          stash of gold from the most corrupt settlement of the gold rush towns.
-          But not all goes to plan one is killed and the other three escapes
-          with bags of gold hide out in the abandoned gold mine where they
-          happen across another gang of three – who themselves were planning to
-          hit the very same bank! As tensions rise, things go from bad to worse
-          as they realise the bags of gold are filled with lead... they’ve been
-          double crossed – but by who and how?
-        </p>
+        <div class="film-modal__img-container">
+          <img src="#" alt="photo" class="film-modal__img" />
+        </div>
+        <div class="film-modal__info-container">
+          <h2 class="film-modal__title">A FISTFUL OF LEAD</h2>
+          <div class="film-modal__list-container">
+            <ul class="film-modal__list list">
+              <li class="film-modal__item">
+                <p class="film-modal__info-sub-title">Vote / Votes</p>
+                <p class="film-modal__info-text">
+                  <span class="film-modal__info-text-vote">7.3</span> /
+                  <span class="film-modal__info-text-votes">1260</span>
+                </p>
+              </li>
+              <li class="film-modal__item">
+                <p class="film-modal__info-sub-title">Popularity</p>
+                <p class="film-modal__info-text">100.2</p>
+              </li>
+              <li class="film-modal__item">
+                <p class="film-modal__info-sub-title">Original Title</p>
+                <p class="film-modal__info-text">A FISTFUL OF LEAD</p>
+              </li>
+              <li class="film-modal__item">
+                <p class="film-modal__info-sub-title">Genre</p>
+                <p class="film-modal__info-text">Western</p>
+              </li>
+            </ul>
+          </div>
+
+          <h3 class="film-modal__about-title">About</h3>
+          <p class="film-modal__about-text">
+            Four of the West’s most infamous outlaws assemble to steal a huge
+            stash of gold from the most corrupt settlement of the gold rush
+            towns. But not all goes to plan one is killed and the other three
+            escapes with bags of gold hide out in the abandoned gold mine where
+            they happen across another gang of three – who themselves were
+            planning to hit the very same bank! As tensions rise, things go from
+            bad to worse as they realise the bags of gold are filled with
+            lead... they’ve been double crossed – but by who and how?
+          </p>
+          <!--  -->
+
+          <div class="film-modal__btn-container">
+            <button type="button" class="film-modal__watch-btn film-modal__btn">
+              ADD TO WATCHED
+            </button>
+            <button type="button" class="film-modal__queue-btn film-modal__btn">
+              ADD TO QUEUE
+            </button>
+          </div>
+        </div>
       </div>
-      <!--  -->
-    </div>
-    <div class="film-modal__btn-container">
-      <button type="button" class="film-modal__watch-btn film-modal__btn">
-        ADD TO WATCHED
-      </button>
-      <button type="button" class="film-modal__queue-btn film-modal__btn">
-        ADD TO QUEUE
-      </button>
     </div>
   </div>
 </div>
