@@ -9,16 +9,20 @@
     </a>
     <div class="header-menu">
         <ul class="header-menu__list">
-            <li class="header-menu__item"><a class="header-menu__link" href="">Home</a></li>
+            <li class="header-menu__item"><a class="header-menu__link header-menu__link--current " href="">Home</a></li>
             <li class="header-menu__item"><a class="header-menu__link" href="">My library</a></li>
         </ul>
     </div>
     </div>
    
 
-    <form  class="search-form">
-        <input type="text">
-        <button type="submit">search</button>
+    <form  class="header-form">
+        <input class="header-form__input" type="text" placeholder="Movie search">
+        <button class="header-form__btn" type="submit">
+            <svg class="header-form__icon">
+            <use href="/src/images/search.svg "></use>
+            </svg> 
+        </button>
     </form>
 
    </div>

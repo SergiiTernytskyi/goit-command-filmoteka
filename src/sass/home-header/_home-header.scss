@@ -1,20 +1,43 @@
+.header{
+    background-color: rgba(0, 0, 0, 0.56);
+    margin-left: auto;
+        margin-right: auto;
+    
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    
+        background-image: url(../images/background/mobile.jpg);
+}
+
+ @media (min-device-pixel-ratio: 2),
+ (min-resolution: 192dpi),
+ (min-resolution: 2dppx){
+    .header{
+        background-image: url(../images/background/mobile2x.jpg);
+        }
+    }
+ 
+
 .header__container{
     margin-left: auto;
     margin-right: auto;
     padding-right: 20px;
     padding-left: 20px;
     padding-top: 40px;
+    padding-bottom: 40px;
 
 }
 
-.header{
-    background-color: rgb(238, 66, 66);
-}
 
+/* -------------------------------------------------------------------------- */
+/*                                    ЛОГО І НАВІГАЦІЯ                        */
+/* -------------------------------------------------------------------------- */
 .header__nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 60px;
 }
 
 .logo{
@@ -32,11 +55,77 @@
         margin: 0;
 }
 
-.header-menu__item {
-    text-decoration: none;
-        font-weight: 500;
+.header-menu__item:not(:last-child) {
+
+margin-right: 40px;
+    
+}
+
+.header-menu__link {
+    font-weight: 500;
         font-size: 12px;
-        line-height: 1.17px;
+        line-height: 1.17;
         text-transform: uppercase;
-        color: #FFFFFF;
+    text-decoration: none;
+    color: #FFFFFF;
+
+    &--current {
+        position: relative;   
+                &::after {
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+    
+                    display: inline-block;
+                    content: '';
+                    width: 100%;
+                    height: 3px;
+    
+                    
+                    background-color: #FF001B;
+                
+            }
+}}
+
+/* -------------------------------------------------------------------------- */
+/*                                ФОРМА ПОШУКУ                                */
+/* -------------------------------------------------------------------------- */
+
+.header-form{
+    position: relative;
+    display:flex;
+    margin-bottom: 52px;
+    justify-content: center;
+    align-items: center;
+    
+}
+.header-form__input{
+    
+    width: 280px;
+    padding-bottom: 4px;
+    border:none;
+    border-bottom: 0.5px solid #FFFFFF;
+    background-color:transparent;
+    
+}
+.header-form__input::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.14;
+    color: #FFFFFF;
+
+}
+
+.header-form__btn{
+    position: absolute;
+    top:5px;
+    right:10px;
+    background-color:transparent;
+    border: none;
+    width: 12px;
+    height: 12px;
+}
+.header-form__icon{
+    width: 12px;
+    height: 12px;
 }
