@@ -1,0 +1,41 @@
+<header class="header" id="header">
+  <div class="container header__container">
+    <div class="header__nav">
+      <a class="logo" href="#header">
+        <!-- <svg  width="24" height="24">
+        <use href="/src/images/film.svg"></use>
+        </svg>  -->
+        <img src="/src/images/film.svg" alt="logo" width="24" height="24" />
+        <span class="logo__text">Filmoteka</span>
+      </a>
+
+      <div class="header-menu">
+        <ul class="header-menu__list">
+          <li class="header-menu__item">
+            <a
+              class="header-menu__link header-menu__link--current"
+              href="/src/index.html"
+              >Home</a
+            >
+          </li>
+          <li class="header-menu__item">
+            <a class="header-menu__link" href="/src/library.html">My library</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <form class="header-form">
+      <input
+        class="header-form__input"
+        type="text"
+        placeholder="Movie search"
+      />
+      <button class="input-btn" type="submit">
+        <svg class="input-btn__icon">
+          <use href="/src/images/sprite.svg#search "></use>
+        </svg>
+      </button>
+    </form>
+  </div>
+</header>
