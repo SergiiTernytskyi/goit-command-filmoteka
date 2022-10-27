@@ -1,0 +1,145 @@
+.backdrop-film-modal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.56);
+  position: fixed;
+  top: 0;
+  left: 0;
+  //   transition: opacity 300ms, visibility 300ms;
+  //   overflow-y: scroll;
+}
+
+.film-modal {
+  width: 280px;
+  height: 93%;
+  background-color: var(--main-light-color);
+  margin: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-top: 48px;
+  position: relative;
+  overflow-y: scroll;
+}
+
+.film-modal__close-btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.film-modal__close-icon {
+  stroke: var(--main-dark-color);
+  transition: stroke 250ms linear;
+  &:hover,
+  &:focus {
+    stroke: var(--accent-color);
+  }
+}
+
+.film-modal__img {
+  //   margin-top: 48px;
+  background-color: var(--accent-color);
+  width: 240px;
+  height: 357px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.film-modal__title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.15;
+  color: var(--main-dark-color);
+  margin-bottom: 20px;
+}
+
+.film-modal__list {
+  margin-bottom: 20px;
+}
+
+.film-modal__item {
+  display: flex;
+  justify-content: space-between;
+
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+}
+
+.film-modal__info-sub-title {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #8c8c8c;
+}
+
+.film-modal__info-text {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--main-dark-color);
+}
+
+.film-modal__info-text-vote {
+  padding: 1px 9px;
+  border-radius: 5px;
+  line-height: 1.16;
+  color: var(--main-light-color);
+  background-color: var(--accent-color);
+}
+
+.film-modal__info-text-votes {
+  padding: 1px 4px;
+  border-radius: 5px;
+  line-height: 1.16;
+  color: var(--main-dark-color);
+  background-color: #f7f7f7;
+}
+
+.film-modal__about-title {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  margin-bottom: 8px;
+}
+
+.film-modal__about-text {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.67;
+  margin-bottom: 20px;
+}
+
+.film-modal__btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.film-modal__btn {
+  width: 110px;
+  height: 44px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-align: center;
+  text-transform: uppercase;
+
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+
+.film-modal__watch-btn {
+  color: var(--main-light-color);
+  background-color: var(--accent-color);
+}
+
+.film-modal__queue-btn {
+  color: var(--main-dark-color);
+  background-color: transparent;
+  border: 1px solid var(--main-dark-color);
+}
