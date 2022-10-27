@@ -1,0 +1,121 @@
+.library-header {
+  margin-left: auto;
+  margin-right: auto;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(../images/background/mobile-lib.jpg);
+
+  @include retina {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/background/mobile-lib.jpg);
+  }
+
+  @include tablet {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/background/tablet-lib.jpg);
+
+    @include retina {
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/background/tablet-lib2x.jpg);
+    }
+  }
+
+  @include desktop {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/background/desktop-lib.jpg);
+
+    @include retina {
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/background/desktop-lib2x.jpg);
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             СТИЛІЗАЦІЯ  КНОПОК                             */
+/* -------------------------------------------------------------------------- */
+
+.wrap-btn {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 22px;
+  @include tablet {
+    margin-bottom: 20px;
+  }
+}
+.library-btn__list {
+  display: flex;
+  justify-content: center;
+}
+.library-btn__item:not(:last-child) {
+  margin-right: 20px;
+
+  @include tablet {
+    margin-right: 32px;
+  }
+  @include desktop {
+    margin-right: 16px;
+  }
+}
+.library-btn__btn {
+  display: block;
+  width: 130px;
+  height: 44px;
+  background-color: transparent;
+  border: 1px solid var(--main-light-color);
+  border-radius: 5px;
+  cursor: pointer;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+
+  color: var(--main-light-color);
+  @include tablet {
+    width: 152px;
+  }
+
+  @include desktop {
+    width: 148px;
+    height: 42px;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                  Стилі кнопки коли вона активна/натиснута                  */
+/* -------------------------------------------------------------------------- */
+
+.library-btn__btn--active {
+  border: none;
+  background: var(--accent-color);
+  box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+}

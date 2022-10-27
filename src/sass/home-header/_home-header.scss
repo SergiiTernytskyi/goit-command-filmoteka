@@ -1,0 +1,167 @@
+.header {
+  background-color: rgba(0, 0, 0, 0.56);
+  margin-left: auto;
+  margin-right: auto;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-image: url(../images/background/mobile.jpg);
+
+  @include retina {
+    background-image: url(../images/background/mobile2x.jpg);
+  }
+
+  @include tablet {
+    background-image: url(../images/background/tablet.jpg);
+
+    @include retina {
+      background-image: url(../images/background/tablet2x.jpg);
+    }
+  }
+
+  @include desktop {
+    background-repeat: repeat;
+    background-image: url(../images/background/desktop.jpg);
+
+    @include retina {
+      background-repeat: repeat;
+      background-image: url(../images/background/desktop2x.jpg);
+    }
+  }
+}
+
+.header__container {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    ЛОГО І НАВІГАЦІЯ                        */
+/* -------------------------------------------------------------------------- */
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+
+  @include tablet {
+    margin-bottom: 40px;
+  }
+}
+
+.logo {
+  align-items: center;
+  display: flex;
+  max-width: 100%;
+  height: auto;
+}
+
+.logo__text {
+  display: none;
+
+  @include tablet {
+    
+    height: 34px;
+    display: block;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.17;
+    display: block;
+    align-items: center;
+    text-align: center;
+    margin-left: 8px;
+
+    color: var(--main-light-color);
+  }
+}
+
+.header-menu__list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header-menu__item:not(:last-child) {
+  margin-right: 40px;
+}
+
+.header-menu__link {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  text-transform: uppercase;
+  color: var(--main-light-color);
+
+  &--current {
+    position: relative;
+    &::after {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+
+      display: inline-block;
+      content: '';
+      width: 100%;
+      height: 3px;
+
+      background-color: var(--current-link-color);
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                ФОРМА ПОШУКУ                                */
+/* -------------------------------------------------------------------------- */
+
+.header-form {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 280px;
+  display: flex;
+  margin-bottom: 52px;
+  justify-content: center;
+  align-items: center;
+
+  @include tablet {
+    width: 44%;
+  }
+
+  @include desktop {
+    width: 31%;
+    margin-bottom: 40px;
+  }
+}
+.header-form__input {
+  width: 100%;
+  height: 25px;
+  padding-bottom: 4px;
+  border: none;
+  color: var(--main-light-color);
+  border-bottom: 0.5px solid var(--main-light-color);
+  background-color: transparent;
+}
+
+.header-form__input::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
+  color: var(--main-light-color);
+}
+
+.input-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  width: 12px;
+  height: 12px;
+}
+.input-btn__icon {
+  width: 12px;
+  height: 12px;
+}
