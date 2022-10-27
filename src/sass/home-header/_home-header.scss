@@ -22,9 +22,11 @@
   }
 
   @include desktop {
+    background-repeat: repeat;
     background-image: url(../images/background/desktop.jpg);
 
     @include retina {
+      background-repeat: repeat;
       background-image: url(../images/background/desktop2x.jpg);
     }
   }
@@ -54,23 +56,24 @@
   display: flex;
   max-width: 100%;
   height: auto;
-  text-decoration: none;
 }
 
 .logo__text {
   display: none;
 
   @include tablet {
+    
+    height: 34px;
     display: block;
     font-weight: 500;
     font-size: 30px;
     line-height: 1.17;
-    display: flex;
+    display: block;
     align-items: center;
     text-align: center;
     margin-left: 8px;
 
-    color: #ffffff;
+    color: var(--main-light-color);
   }
 }
 
@@ -90,8 +93,7 @@
   font-size: 12px;
   line-height: 1.17;
   text-transform: uppercase;
-  text-decoration: none;
-  color: #ffffff;
+  color: var(--main-light-color);
 
   &--current {
     position: relative;
@@ -105,7 +107,7 @@
       width: 100%;
       height: 3px;
 
-      background-color: #ff001b;
+      background-color: var(--current-link-color);
     }
   }
 }
@@ -125,7 +127,7 @@
   align-items: center;
 
   @include tablet {
-    width: 43.75%;
+    width: 44%;
   }
 
   @include desktop {
@@ -135,16 +137,19 @@
 }
 .header-form__input {
   width: 100%;
+  height: 25px;
   padding-bottom: 4px;
   border: none;
-  border-bottom: 0.5px solid #ffffff;
+  color: var(--main-light-color);
+  border-bottom: 0.5px solid var(--main-light-color);
   background-color: transparent;
 }
+
 .header-form__input::placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.14;
-  color: #ffffff;
+  color: var(--main-light-color);
 }
 
 .input-btn {
