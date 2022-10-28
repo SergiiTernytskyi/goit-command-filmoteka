@@ -1,0 +1,62 @@
+.gallery{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 20px;
+    @include tablet{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    @include tablet{
+        gap: 20px;
+    }
+    @include desktop{
+        gap: 16px;
+    }
+}
+.card__item{
+    
+    @include mobile
+    {
+        width: 70%;
+       
+    }
+    @include tablet{
+        width: 336px;
+    }
+    @include desktop{
+        width: 394px;
+    }
+    &:hover,:focus{
+        
+transform: scale(1.03);
+transition: transform 350ms linear;
+
+    }
+}
+.card__thumb{
+    margin-bottom: 10px;
+}
+.card__img{
+    border-radius: 5px;
+}
+.card__title{
+    font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 14px;
+text-transform: uppercase;
+
+
+color: #000000;
+}
+.card__text
+{
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 16px;
+color: var(--accent-color);
+}
