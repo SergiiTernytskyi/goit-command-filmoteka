@@ -29,12 +29,15 @@ searchQuery = e.currentTarget.elements.query.value.trim().toLowerCase();
 
 
 function createMarkup(movies) {
-    return movies
-      .map(({ poster_path, original_title }) => {
-        return `<li>
-       <img scr="${poster_path}" alt="${original_title}"/>
+  
+  return movies
+
+    .map(({ poster_path, original_title }) => {
+      return `<li>
+       
+       <img scr="https://image.tmdb.org/t/p/w500${poster_path}" alt="${original_title}" width="150"/>
        <p>${original_title}</p>
        </li>`;
-      })
-      .join('');
+    })
+    .join('');
 }
