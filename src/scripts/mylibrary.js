@@ -5,6 +5,7 @@ import { refs } from './refs';
 
 function toggleItems(filmId, storageKey) {
   let watchedItems = load(storageKey);
+  // watchedItems = watchedItems ? watchedItems : [];
   if (Array.isArray(watchedItems)) {
     const existIndex = watchedItems.indexOf(filmId);
     if (existIndex > -1) {
@@ -42,8 +43,8 @@ export function isFilmQueued(filmId) {
 }
 
 export async function loadAllFilms() {
-  const watchedFilms = load('watched');
-  const queuedFilms = load('queue');
+  const watchedFilms = load('watched') || [];
+  const queuedFilms = load('queue') || [];
   const filmsId = [...watchedFilms, ...queuedFilms];
   console.log(filmsId);
   const filmsPromises = filmsId.map(async filmId => await getFilmbyId(filmId));
@@ -54,7 +55,7 @@ export async function loadAllFilms() {
   );
 }
 export async function loadWatchedFilms() {
-  const watchedFilms = load('watched');
+  const watchedFilms = load('watched') || [];
 
   const watchedfilmsId = [...watchedFilms];
   console.log(watchedfilmsId);
@@ -69,7 +70,7 @@ export async function loadWatchedFilms() {
 }
 
 export async function loadQueuedFilms() {
-  const queuedFilms = load('queue');
+  const queuedFilms = load('queue') || [];
 
   const queuedfilmsId = [...queuedFilms];
   console.log(queuedfilmsId);
