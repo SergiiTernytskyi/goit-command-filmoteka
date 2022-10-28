@@ -4,6 +4,6 @@ export const refs = {
   myLibraryFilmList: document.querySelector('.films__list'),
 };
 
-// console.log(refs.watchedBtn);
-// console.log(refs.queueBtn);
-// console.log(refs.myLibraryFilmList);
+console.log(refs.watchedBtn);
+console.log(refs.queueBtn);
+console.log(refs.myLibraryFilmList);

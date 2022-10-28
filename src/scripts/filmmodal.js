@@ -25,7 +25,8 @@ function updateQueuedBtnText(filmId) {
   }
 }
 
-export function initModal(filmId) {
+export function setupModalButtons(filmId) {
+  console.log(document.querySelector('.film-modal__watch-btn'));
   refs.watchedBtn.addEventListener('click', () => {
     toggleWatched(filmId);
     updateWatchedBtnText(filmId);
