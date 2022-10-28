@@ -1,10 +1,10 @@
 
 import { MovieApi } from './MovieApi'
-import listOfGenres from '../genresList';
+import listOfGenres from '../../js/genresList';
 import { clearGallery } from './clearGallery';
 import Notiflix from 'notiflix';
 import { Report } from 'notiflix/build/notiflix-report-aio';
-import refs from './refs'
+import { refs } from '../refs';
 
 
 let searchQuery = '';
