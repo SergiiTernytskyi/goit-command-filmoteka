@@ -5,8 +5,11 @@
   position: fixed;
   top: 0;
   left: 0;
-  // transition: opacity 300ms, visibility 300ms;
-  // overflow-y: scroll;
+  transition: opacity 300ms, visibility 300ms;
+}
+
+.backdrop-film-modal.is-hidden .film-modal {
+  transform: translate(-50%, -50%) scale(0);
 }
 
 .film-modal {
@@ -18,7 +21,8 @@
   position: relative;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
+  transition: 300ms;
   overflow-y: scroll;
 
   @include tablet {
@@ -85,6 +89,7 @@
     max-width: 375px;
     height: 478px;
     margin-right: 16px;
+    margin-bottom: 0;
   }
 }
 
@@ -242,12 +247,12 @@
 .film-modal__watch-btn {
   color: var(--main-light-color);
   background-color: var(--accent-color);
-  transition: color 250ms var(--timing-function);
+  // transition: color 250ms var(--timing-function);
 
-  &:hover,
-  &:focus {
-    color: var(--main-dark-color);
-  }
+  // &:hover,
+  // &:focus {
+  //   color: var(--main-dark-color);
+  // }
 
   @include responsive {
     margin-right: 15px;
@@ -262,12 +267,12 @@
   color: var(--main-dark-color);
   background-color: transparent;
   border: 1px solid var(--main-dark-color);
-  transition: color 250ms var(--timing-function),
-    border-color 250ms var(--timing-function);
+  // transition: color 250ms var(--timing-function),
+  //   border-color 250ms var(--timing-function);
 
-  &:hover,
-  &:focus {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-  }
+  // &:hover,
+  // &:focus {
+  //   border-color: var(--accent-color);
+  //   color: var(--accent-color);
+  // }
 }
