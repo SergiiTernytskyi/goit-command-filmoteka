@@ -29,6 +29,7 @@
     }
     @include tablet{
         width: 336px;
+        
     }
     @include desktop{
         width: 394px;
@@ -45,6 +46,15 @@ transition: transform 350ms linear;
 }
 .card__img{
     border-radius: 5px;
+    @include tablet{
+        width: 336px;
+        height: 455px;
+    }
+    @include desktop{
+        width: 394px;
+        height: 574px;
+    }
+    
 }
 .card__title{
     font-family: 'Roboto';

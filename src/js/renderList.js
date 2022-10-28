@@ -1,22 +1,5 @@
 import listOfGenres from "./genresList";
-const popularGallery=document.querySelector(".gallery")
-
-function fetchPopular() {
-    return fetch("https://api.themoviedb.org/3/trending/movie/day?api_key=86c51b00b5bb8cfadb7d5efaffb91bf1").then(
-      (response) => {
-        if (!response.ok) {
-          throw new Error(response.status);
-        }
-        return response.json();
-      }
-    );
-  }
- 
-  fetchPopular()
-  .then((films)=>renderPopularList(films.results))
-  .catch((error) => console.log(error));
- 
-  function renderPopularList(films){
+ export default function renderPopularList(films){
     const markup=films.map((film)=>{
         return `<li class="card__item">
         <div class="card__thumb">
@@ -30,7 +13,5 @@ function fetchPopular() {
         </p>
         </li>`
     }).join("");
-    popularGallery.innerHTML = markup;
- 
+    return markup;
   }
-  
