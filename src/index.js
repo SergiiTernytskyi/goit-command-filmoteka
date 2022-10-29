@@ -1,7 +1,6 @@
-import './library.js';
+// import './library.js';
 import 'animate.css/animate.css';
-import './js/renderList';
-import './js/genresList';
-import './scripts/keyword/seachKeyword'
-import './js/fetchPopular'
-
+import './scripts/render-list';
+import './scripts/genres-list';
+import './scripts/keyword/seachKeyword';
+import './js/fetchPopular';
