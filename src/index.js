@@ -1,4 +1,8 @@
+// import './library.js';
 import 'animate.css/animate.css';
-import './js/renderList';
-import './js/genresList';
-import './js/team-modal';
+import './scripts/render-list';
+import './scripts/genres-list';
+import './scripts/keyword/seachKeyword';
+import './scripts/trailer';
+import './js/fetchPopular';
+

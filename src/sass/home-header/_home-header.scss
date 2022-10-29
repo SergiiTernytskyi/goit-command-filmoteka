@@ -1,39 +1,68 @@
 .header {
   background-color: rgba(0, 0, 0, 0.56);
-  margin-left: auto;
-  margin-right: auto;
 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-  background-image: url(../images/background/mobile.jpg);
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(../images/background/mobile.jpg);
+  opacity: 0.9;
 
   @include retina {
-    background-image: url(../images/background/mobile2x.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/background/mobile2x.jpg);
   }
 
   @include tablet {
-    background-image: url(../images/background/tablet.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/background/tablet.jpg);
 
     @include retina {
-      background-image: url(../images/background/tablet2x.jpg);
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/background/tablet2x.jpg);
     }
   }
 
   @include desktop {
     background-repeat: repeat;
-    background-image: url(../images/background/desktop.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/background/desktop.jpg);
 
     @include retina {
       background-repeat: repeat;
-      background-image: url(../images/background/desktop2x.jpg);
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/background/desktop2x.jpg);
     }
   }
 }
 
 .header__container {
-  padding-top: 40px;
+  padding-top: 35px;
   padding-bottom: 40px;
 }
 
@@ -44,11 +73,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 
   @include tablet {
-    margin-bottom: 40px;
+    margin-bottom: 35px;
   }
+}
+
+.logo-wrap:hover .logo,
+.logo-wrap:focus .logo {
+  animation: lightSpeedInLeft;
+  animation-duration: 2000ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo {
@@ -56,13 +92,19 @@
   display: flex;
   max-width: 100%;
   height: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  transition: scale 250ms var(--timing-function);
+
+  &:focus {
+    scale: 1.2;
+  }
 }
 
 .logo__text {
   display: none;
 
   @include tablet {
-    
     height: 34px;
     display: block;
     font-weight: 500;
@@ -89,17 +131,28 @@
 }
 
 .header-menu__link {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.17;
   text-transform: uppercase;
   color: var(--main-light-color);
+  transition: color 250ms var(--timing-function),
+    scale 250ms var(--timing-function);
+
+  &:hover,
+  &:focus {
+    color: var(--accent-color);
+    scale: 1.2;
+  }
 
   &--current {
     position: relative;
     &::after {
       position: absolute;
-      bottom: -2px;
+      bottom: 7px;
       left: 0;
 
       display: inline-block;
@@ -108,7 +161,18 @@
       height: 3px;
 
       background-color: var(--current-link-color);
+
+      @include tablet {
+        bottom: 9px;
+      }
+      @include desktop {
+        bottom: 11px;
+      }
     }
+  }
+  @include tablet {
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 }
 
@@ -128,21 +192,30 @@
 
   @include tablet {
     width: 44%;
+    margin-bottom: 41px;
   }
 
   @include desktop {
     width: 31%;
-    margin-bottom: 40px;
+    margin-bottom: 41px;
   }
 }
 .header-form__input {
   width: 100%;
-  height: 25px;
+  height: 20px;
   padding-bottom: 4px;
   border: none;
   color: var(--main-light-color);
   border-bottom: 0.5px solid var(--main-light-color);
   background-color: transparent;
+
+  transition: border-color 250ms var(--timing);
+
+  .header-form:focus-within &,
+  .header-form:hover & {
+    outline: none;
+    border-color: var(--accent-color);
+  }
 }
 
 .header-form__input::placeholder {
@@ -154,14 +227,64 @@
 
 .input-btn {
   position: absolute;
-  top: 5px;
-  right: 10px;
+  top: 2px;
+  right: 2px;
   background-color: transparent;
   border: none;
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
+  padding: 0;
+
+  transition: scale 250ms var(--timing), background-color 250ms var(--timing);
+
+  &:focus,
+  &:hover {
+    scale: 1.2;
+    background-color: var(--accent-color);
+  }
 }
 .input-btn__icon {
   width: 12px;
   height: 12px;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+.filter_form {
+  text-align: center;
+}
+.filter_form__select {
+  border: 0px;
+  border-bottom: 1px solid var(--main-light-color);
+  color: var(--main-light-color);
+  border-radius: 0px;
+  outline: none;
+  background-color: inherit;
+  padding: 2px;
+}
+
+.filter_form__select>option {
+  background-color: #272e34;
+}
+
+.filter_form__select:not(:last-child) {
+  margin-right: 3px;
+  margin-bottom: 8px;
+}
+
+.btnResetFilter {
+  margin-top: 5px;
+  text-align: start;
+  width: 50px;
+  border: 0px;
+  color: var(--main-light-color);
+  border-radius: 0px;
+  outline: none;
+  background-color: inherit;
+  cursor: pointer;
 }
