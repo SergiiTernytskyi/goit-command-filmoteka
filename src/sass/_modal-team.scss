@@ -8,7 +8,7 @@
     width: 100%;
     height: 100%;
 
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.25);
     opacity: 1;
     transition: opacity 250ms var(--timing-function);
     padding: 93px 15px 0px 15px;
@@ -46,7 +46,6 @@
     margin-right: auto;
     margin-left: auto;
 
-    width: 300px;
     max-width: 528px;
     max-height: 100vh;
     
@@ -65,34 +64,30 @@
     }
 
     @include desktop {
-        width: 900px;
-        max-width: 900px;
-        height: 700px;
+        width: 1000px;
+        max-width: 1000px;
     }
 }
 
 .modal-team__close-btn {
     width: 30px;
     height: 30px;
-    border: 1px solid var(--middle-accent-text-color);
-    border-radius: 50%;
-    background-color: transparent;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    display: flex;
+    transition: fill 250ms var(--timing-function);
+    background-color: #0000;
     align-items: center;
-    justify-content: center;
-    padding: 0;
-    color: var(--accent-text-color);
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border: transparent;
 
     transition: fill 250ms var(--timing-function);
 
     &:hover,
     &:focus {
-        background-color: var(--middle-accent-text-color);
+       color: var(--accent-color);
     }
 }
+
 
 .modal-team__close-icon {
     fill: currentColor;
@@ -101,7 +96,7 @@
 .modal-team-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 20px;
 
     @include desktop{
         justify-content: space-evenly;
@@ -110,24 +105,110 @@
 }
 
 .modal-team-list__item {
+    position: relative;
     margin: 0;
-    width: calc((100% - 25px)/2);
+    box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);
+    border-radius: 0px 0px 4px 4px;
+    width: 100%;
 
     @include tablet {
-        width: calc((100% - 50px)/3);
+        width: calc((100% - 40px)/3);
     }
+}
 
-    @include desktop {
-        width: calc((100% - 75px)/6);
-    }
+.accent--item {
+    // box-shadow: 8px 8px 11px -2px var(--accent-color);
+    box-shadow: 0px 1px 3px var(--accent-color), 0px 1px 1px var(--accent-color), 0px 2px 1px var(--accent-color);
 }
 
 .modal-team-list__photo {
     width: 100px;
-    border-radius: 30%;
-    box-shadow: 5px 5px 11px -2px #000;
     display: block;
     max-width: 100%;
     width: 100%;
-    margin-bottom: 25px;
+}
+
+.team-thumb {
+    z-index: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .7);
+    display: inline-block;
+    position: absolute;
+    bottom:0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+    @include tablet {
+        padding: 10px;
+        min-height: 83px;
+    }
+
+    @include desktop {
+        padding: 10px 20px;
+        min-height: 100px;
+    }
+}
+
+.team-content {
+    margin-right: 20px;
+}
+
+.team-thumb__link {
+    width: 44px;
+    height: 44px;
+    background-color: rgba(220, 201, 201, .1);
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    display: flex;
+
+    &:hover,
+    &:focus {
+        background-color: var(--accent-color);
+    }
+}
+
+.team-thumb__link-icon {
+    fill:var(--accent-color);
+
+    &:hover,
+    &:focus {
+            fill: var(--main-light-color);
+        }
+}
+
+.team-content__name {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 2px;
+    color: var(--main-light-color);
+
+    @include tablet {
+        font-size: 14px;
+    }
+          @include desktop {
+              font-size: 18px;
+          }
+
+}
+
+.team-content__position {
+    color: var(--accent-color);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.6;
+
+    @include tablet {
+            font-size: 14px;
+        }
+    
+    @include desktop {
+            font-size: 18px;
+        }
 }
