@@ -5,3 +5,4 @@ import './scripts/genres-list';
 import './scripts/keyword/seachKeyword';
 import './scripts/trailer';
 import './js/fetchPopular';
+import './scripts/btnToTop'
