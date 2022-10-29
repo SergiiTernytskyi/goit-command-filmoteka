@@ -10,6 +10,7 @@ elem.id = '124';
 export function addImageNoResult() {
   if (elem.id !== 124) {
     refs.list.parentNode.appendChild(elem);
+    elem.classList.add('show');
   }
   return;
 }
