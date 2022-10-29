@@ -255,3 +255,36 @@
 .show {
   display: block;
 }
+.filter_form {
+  text-align: center;
+}
+.filter_form__select {
+  border: 0px;
+  border-bottom: 1px solid var(--main-light-color);
+  color: var(--main-light-color);
+  border-radius: 0px;
+  outline: none;
+  background-color: inherit;
+  padding: 2px;
+}
+
+.filter_form__select>option {
+  background-color: #272e34;
+}
+
+.filter_form__select:not(:last-child) {
+  margin-right: 3px;
+  margin-bottom: 8px;
+}
+
+.btnResetFilter {
+  margin-top: 5px;
+  text-align: start;
+  width: 50px;
+  border: 0px;
+  color: var(--main-light-color);
+  border-radius: 0px;
+  outline: none;
+  background-color: inherit;
+  cursor: pointer;
+}
