@@ -7,28 +7,40 @@
   background-position: center;
   background-repeat: no-repeat;
 
-  background-image: url(../images/background/mobile.jpg);
+  background-image:linear-gradient(to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)), url(../images/background/mobile.jpg);
   opacity: 0.9;
 
   @include retina {
-    background-image: url(../images/background/mobile2x.jpg);
+    background-image: linear-gradient(to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)), url(../images/background/mobile2x.jpg);
   }
 
   @include tablet {
-    background-image: url(../images/background/tablet.jpg);
+    background-image: linear-gradient(to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)), url(../images/background/tablet.jpg);
 
     @include retina {
-      background-image: url(../images/background/tablet2x.jpg);
+      background-image: linear-gradient(to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)), url(../images/background/tablet2x.jpg);
     }
   }
 
   @include desktop {
     background-repeat: repeat;
-    background-image: url(../images/background/desktop.jpg);
+    background-image: linear-gradient(to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)), url(../images/background/desktop.jpg);
 
     @include retina {
       background-repeat: repeat;
-      background-image: url(../images/background/desktop2x.jpg);
+      background-image: linear-gradient(to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)), url(../images/background/desktop2x.jpg);
     }
   }
 }
