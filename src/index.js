@@ -4,3 +4,4 @@ import './scripts/render-list';
 import './scripts/genres-list';
 import './scripts/keyword/seachKeyword';
 import './js/fetchPopular';
+import './js/modalFilm';
