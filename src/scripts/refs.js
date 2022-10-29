@@ -7,6 +7,6 @@ export const refs = {
   
 };
 
-// console.log(refs.watchedBtn);
-// console.log(refs.queueBtn);
-// console.log(refs.myLibraryFilmList);
+console.log(refs.watchedBtn);
+console.log(refs.queueBtn);
+console.log(refs.myLibraryFilmList);

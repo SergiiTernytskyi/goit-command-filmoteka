@@ -1,4 +1,4 @@
-import { refs } from "../refs";
+import { refs } from '../refs';
 
 const elem = document.createElement('img');
 const srcImg =
