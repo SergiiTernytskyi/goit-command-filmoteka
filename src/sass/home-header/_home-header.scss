@@ -7,28 +7,58 @@
   background-position: center;
   background-repeat: no-repeat;
 
-  background-image: url(../images/background/mobile.jpg);
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(../images/background/mobile.jpg);
   opacity: 0.9;
 
   @include retina {
-    background-image: url(../images/background/mobile2x.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/background/mobile2x.jpg);
   }
 
   @include tablet {
-    background-image: url(../images/background/tablet.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/background/tablet.jpg);
 
     @include retina {
-      background-image: url(../images/background/tablet2x.jpg);
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/background/tablet2x.jpg);
     }
   }
 
   @include desktop {
     background-repeat: repeat;
-    background-image: url(../images/background/desktop.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/background/desktop.jpg);
 
     @include retina {
       background-repeat: repeat;
-      background-image: url(../images/background/desktop2x.jpg);
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/background/desktop2x.jpg);
     }
   }
 }
@@ -58,7 +88,14 @@
   max-width: 100%;
   height: auto;
   padding-top: 5px;
-    padding-bottom: 5px;
+  padding-bottom: 5px;
+
+  transition: scale 250ms var(--timing-function);
+
+  &:hover,
+  &:focus {
+    scale: 1.2;
+  }
 }
 
 .logo__text {
@@ -76,6 +113,11 @@
     margin-left: 8px;
 
     color: var(--main-light-color);
+    &:hover,
+    &:focus {
+      animation: scale-in-hor-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        both;
+    }
   }
 }
 
@@ -99,6 +141,14 @@
   line-height: 1.17;
   text-transform: uppercase;
   color: var(--main-light-color);
+  transition: color 250ms var(--timing-function),
+    scale 250ms var(--timing-function);
+
+  &:hover,
+  &:focus {
+    color: var(--accent-color);
+    scale: 1.2;
+  }
 
   &--current {
     position: relative;
@@ -115,17 +165,17 @@
       background-color: var(--current-link-color);
 
       @include tablet {
-          bottom: 9px;
-        }
-                 @include desktop {
-                    bottom: 11px;
-                 }
+        bottom: 9px;
+      }
+      @include desktop {
+        bottom: 11px;
+      }
     }
   }
-    @include tablet {
-      padding-top: 15px;
-      padding-bottom: 15px;
-    }
+  @include tablet {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -160,6 +210,14 @@
   color: var(--main-light-color);
   border-bottom: 0.5px solid var(--main-light-color);
   background-color: transparent;
+
+  transition: border-color 250ms var(--timing);
+
+  .header-form:focus-within &,
+  .header-form:hover & {
+    outline: none;
+    border-color: var(--accent-color);
+  }
 }
 
 .header-form__input::placeholder {
@@ -172,15 +230,34 @@
 .input-btn {
   position: absolute;
   top: 2px;
-  right: 10px;
+  right: 2px;
   background-color: transparent;
   border: none;
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
+  padding: 0;
+
+  transition: scale 250ms var(--timing), background-color 250ms var(--timing);
+
+  &:focus,
+  &:hover {
+    scale: 1.2;
+    background-color: var(--accent-color);
+  }
 }
 .input-btn__icon {
   width: 12px;
   height: 12px;
 }
 
+@keyframes scale-in-hor-center {
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
 
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
