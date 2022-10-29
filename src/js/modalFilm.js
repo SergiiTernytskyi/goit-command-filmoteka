@@ -1,13 +1,51 @@
-<div class="backdrop-film-modal is-hidden">
-  <div class="film-modal">
-    <button type="button" class="film-modal__close-btn close-btn-js">
-      <svg class="film-modal__close-icon" width="30" height="30">
-        <use href="./images/sprite.svg#icon-close"></use>
-      </svg>
-    </button>
-    <!-- <div class="film-modal__container"> -->
-    <!-- create markup -->
-      <div class="film-modal__card">
+const refs = {
+  filmCard: document.querySelector('.gallery-js'),
+  modalBackdrop: document.querySelector('.backdrop-film-modal'),
+  closeFilmModalBtn: document.querySelector('.close-btn-js'),
+  body: document.querySelector('body'),
+  filmContainer: document.querySelector('.film-modal__card'),
+};
+
+refs.filmCard.addEventListener('click', onFilmOpen);
+
+function onFilmOpen(event) {
+  if (event.target.nodeName === 'UL') {
+    return;
+  }
+
+  refs.modalBackdrop.classList.remove('is-hidden');
+
+  document.body.style.overflow = 'hidden';
+
+  window.addEventListener('keydown', onEscPress);
+}
+
+refs.closeFilmModalBtn.addEventListener('click', onCloseFilmModal);
+
+function onCloseFilmModal(event) {
+  window.removeEventListener('keydown', onEscPress);
+  refs.modalBackdrop.classList.add('is-hidden');
+  document.body.style.overflow = 'scroll';
+}
+
+refs.modalBackdrop.addEventListener('click', onBackdropClickClose);
+
+function onBackdropClickClose(event) {
+  if (event.currentTarget === event.target) {
+    onCloseFilmModal();
+  }
+}
+
+function onEscPress(event) {
+  if (event.code === 'Escape') {
+    onCloseFilmModal();
+  }
+}
+
+// -----------------------------------------------
+
+function createMarkup() {
+  const markup = `<div class="film-modal__card">
       <div class="film-modal__img-container">
         <img src="#" alt="photo" class="film-modal__img" />
       </div>
@@ -48,6 +86,7 @@
           double crossed – but by who and how?
         </p>
 
+        <!--  -->
 
         <div class="film-modal__btn-container">
           <button
@@ -64,7 +103,7 @@
           </button>
         </div>
       </div>
-    </div> 
-</div> 
-  </div>
-</div>
+    </div>`;
+
+  refs.filmContainer.innerHTML = markup;
+}
