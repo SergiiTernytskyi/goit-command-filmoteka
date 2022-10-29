@@ -8,6 +8,7 @@ import { Report } from 'notiflix/build/notiflix-report-aio';
 import { refs } from '../refs';
 import renderPopularList from '../render-list';
 import { addImageNoResult } from './addImages';
+import { hideImage } from './deleteImage';
 
 let searchQuery = '';
 
@@ -29,12 +30,19 @@ function onSearch(e) {
         'Search result not successful. Enter the correct movie name and ',
         'Okay &#128527'
       );
-
-      addImageNoResult();
+      clearGallery();
+      refs.form.reset();
+       return addImageNoResult(); 
+      
     }
+
+    hideImage();
     clearGallery();
     refs.form.reset();
     const markup = renderPopularList(films.results);
     refs.list.insertAdjacentHTML('beforeend', markup);
+      
+    
+      
   });
 }
