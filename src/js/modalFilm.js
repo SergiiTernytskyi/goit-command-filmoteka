@@ -7,14 +7,25 @@ const refs = {
   filmItem: document.querySelector('.card__item'),
 };
 
-console.log(refs.filmContainer);
-
 refs.filmList.addEventListener('click', onFilmOpen);
 
 function onFilmOpen(event) {
   if (event.target.nodeName === 'UL') {
     return;
   }
+
+  refs.filmContainer.innerHTML = '';
+
+  let filmId = event.target.closest('.card__item').dataset.filmid;
+
+  fetchOneFilm(filmId)
+    .then(film => {
+      return createMarkup(film);
+    })
+    .then(markupFilm => {
+      return (refs.filmContainer.innerHTML = markupFilm);
+    })
+    .catch(error => console.log(error));
 
   refs.modalBackdrop.classList.remove('is-hidden');
 
@@ -49,12 +60,9 @@ function onEscPress(event) {
 
 import listOfGenres from '../scripts/genres-list';
 
-// console.log(refs.filmItem.dataset.filmid);
-
-function fetchOneFilm() {
-  // let id = refs.filmItem.dataset.filmid;
+function fetchOneFilm(filmId) {
   return fetch(
-    `https://api.themoviedb.org/3/movie/49046?api_key=2b7f816e736d5b5ccbfcea974c6e28fa&language=en-US`
+    `https://api.themoviedb.org/3/movie/${filmId}?api_key=2b7f816e736d5b5ccbfcea974c6e28fa&language=en-US`
   ).then(response => {
     if (!response.ok) {
       throw new Error(response.status);
@@ -62,16 +70,6 @@ function fetchOneFilm() {
     return response.json();
   });
 }
-
-fetchOneFilm()
-  .then(film => {
-    console.log(film);
-    return createMarkup(film);
-  })
-  .then(markupFilm => {
-    return (refs.filmContainer.innerHTML = markupFilm);
-  })
-  .catch(error => console.log(error));
 
 function createMarkup(film) {
   const markupFilm = `<div class="film-modal__card" data-filmid="${film.id}">
