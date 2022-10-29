@@ -7,7 +7,6 @@ elem.setAttribute('src', srcImg);
 elem.setAttribute('alt', 'Cat with big eyes');
 elem.id = '124';
 
-
 export function addImageNoResult() {
   if (elem.id !== 124) {
     refs.list.parentNode.appendChild(elem);

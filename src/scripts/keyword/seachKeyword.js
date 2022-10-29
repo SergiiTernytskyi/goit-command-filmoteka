@@ -1,7 +1,4 @@
 import { MovieApi } from './MovieApi';
-
-import listOfGenres from '../genres-list';
-
 import { clearGallery } from './clearGallery';
 import Notiflix from 'notiflix';
 import { Report } from 'notiflix/build/notiflix-report-aio';
@@ -32,8 +29,7 @@ function onSearch(e) {
       );
       clearGallery();
       refs.form.reset();
-       return addImageNoResult(); 
-      
+      return addImageNoResult();
     }
 
     hideImage();
@@ -41,8 +37,5 @@ function onSearch(e) {
     refs.form.reset();
     const markup = renderPopularList(films.results);
     refs.list.insertAdjacentHTML('beforeend', markup);
-      
-    
-      
   });
 }
