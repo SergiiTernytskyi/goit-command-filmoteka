@@ -1,16 +1,14 @@
 import { refs } from './refs';
 
-(() => {
   refs.openModalLink.addEventListener('click', toggleTeamModal);
   refs.closeModalBtn.addEventListener('click', toggleTeamModal);
   refs.modalTeamBackdrop.addEventListener('click', onBackdropClickClose);
   window.addEventListener('keydown', onEscPress);
 
-  function toggleTeamModal() {
+function toggleTeamModal() {
     refs.teamModal.classList.toggle('is-hidden');
     refs.body.classList.toggle('no-scroll');
   }
-})();
 
 function onCloseTeamModal(event) {
   window.removeEventListener('keydown', onEscPress);
@@ -29,3 +27,4 @@ function onEscPress(event) {
     onCloseTeamModal();
   }
 }
+

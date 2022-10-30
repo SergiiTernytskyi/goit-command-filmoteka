@@ -41,7 +41,7 @@
 
     transition: transform 500ms var(--timing-function),
         opacity 500ms var(--timing-function),
-        visibility ms var(--timing-function);
+        visibility 500ms var(--timing-function);
 
     margin-right: auto;
     margin-left: auto;
@@ -142,7 +142,7 @@
     @include tablet {
         justify-content: space-between;
     }
-    
+
     padding: 20px;
     border-radius: 0px 0px 4px 4px;
 
