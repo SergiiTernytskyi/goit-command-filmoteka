@@ -84,15 +84,23 @@
   visibility: hidden;
   box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
   cursor: pointer;
-  background-color: black;
+  background-color: var(--accent-color);
+  color: #ffffff;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .btn-to-top:hover {
   animation: animate90 400ms linear 150ms forwards;
-  background-color: blue;
+  background-color: var(--main-dark-color);
+  color: var(--accent-color);
 }
+
 .btn-to-top--visible {
   right: calc(2.5%);
   opacity: 1;
   visibility: visible;
+}
+
+.btn-to-top__icon {
+  fill: currentColor;
 }
