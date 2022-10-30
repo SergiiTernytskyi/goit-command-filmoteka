@@ -11,6 +11,7 @@ import { spinerPlay, spinerStop } from './helpers/spin-ner';
 import { renderGallery } from './helpers/render';
 import { longify } from './helpers/longify';
 import { paginationHide } from './helpers/hide-pagination';
+import { onToTopBtn } from './btnToTop';
 import { showWarningMessage, showReportFailture } from './helpers/messages';
 
 import sprite from '../images/sprite.svg';
@@ -59,6 +60,7 @@ async function paginationSetup(page, totalItems) {
         const data = await moviesApiService.fetchTrendData();
 
         renderGallery(data.results);
+        onToTopBtn();
       } catch (error) {
         console.log(error);
       } finally {
@@ -72,6 +74,7 @@ async function paginationSetup(page, totalItems) {
         const data = await moviesApiService.fetchMovieByWord();
 
         renderGallery(data.results);
+        onToTopBtn();
       } catch (error) {
         console.log(error);
       } finally {
