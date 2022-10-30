@@ -268,7 +268,7 @@
   padding: 2px;
 }
 
-.filter_form__select>option {
+.filter_form__select > option {
   background-color: #272e34;
 }
 
@@ -287,4 +287,51 @@
   outline: none;
   background-color: inherit;
   cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               ЗМІНА ТЕМИ                                   */
+/* -------------------------------------------------------------------------- */
+
+.theme-switch {
+  // width: 180px;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.them-btn-wraper {
+  width: 42px;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 4px;
+  background-color: transparent;
+  border: 1px solid var(--current-link-color);
+  border-radius: 30px;
+}
+
+.them-btn {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--current-link-color);
+  border: none;
+  outline: transparent;
+}
+
+.hide-btn {
+  opacity: 0;
+}
+
+.switch-icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--current-link-color);
+}
+
+.opacity-icon {
+  opacity: 0.4;
 }
