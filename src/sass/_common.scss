@@ -1,4 +1,7 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -15,4 +18,8 @@ main {
 
 button {
   cursor: pointer;
+}
+
+.no-scroll {
+  overflow-y: hidden;
 }

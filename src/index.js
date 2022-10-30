@@ -7,4 +7,6 @@ import './scripts/trailer';
 import './js/fetchPopular';
 import './scripts/btnToTop'
 import './js/modalFilm';
+import './scripts/team-modal';
+import './scripts/pagination';
 

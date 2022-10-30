@@ -1,5 +1,6 @@
 import listOfGenres from './genres-list';
-export default function renderPopularList(films) {
+
+export function renderList(films) {
   const markup = films
     .map(film => {
       return `<li class="card__item" data-filmid="${film.id}">
