@@ -5,8 +5,5 @@ import './scripts/genres-list';
 import './scripts/keyword/seachKeyword';
 import './scripts/trailer';
 import './js/fetchPopular';
-
 import './js/modalFilm';
-
-import './scripts/btnToTop'
-
+import './scripts/btnToTop';
