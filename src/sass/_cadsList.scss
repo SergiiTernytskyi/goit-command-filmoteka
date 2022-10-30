@@ -1,4 +1,5 @@
 .gallery {
+
   display: block;
   padding: 0;
   margin: 0;
@@ -11,6 +12,10 @@
   @include tablet {
     gap: 32px;
   }
+
+.card__title--dark {
+  color: #ffffff;
+}
 
   @include desktop {
     gap: 16px;

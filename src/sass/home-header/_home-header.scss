@@ -287,3 +287,52 @@
   background-color: inherit;
   cursor: pointer;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                               ЗМІНА ТЕМИ                                   */
+/* -------------------------------------------------------------------------- */
+
+.theme-switch {
+  display: flex;
+  margin-bottom: 5px;
+
+  @include tablet {
+    justify-content: center;
+  }
+}
+
+.them-btn-wraper {
+  width: 42px;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 4px;
+  background-color: transparent;
+  border: 1px solid var(--current-link-color);
+  border-radius: 30px;
+}
+
+.them-btn {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--current-link-color);
+  border: none;
+  outline: transparent;
+}
+
+.hide-btn {
+  opacity: 0;
+}
+
+.switch-icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--current-link-color);
+}
+
+.opacity-icon {
+  opacity: 0.4;
+}
+

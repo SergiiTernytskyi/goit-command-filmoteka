@@ -1,5 +1,6 @@
 import { refs } from './refs';
 
+
   refs.openModalLink.addEventListener('click', toggleTeamModal);
   refs.closeModalBtn.addEventListener('click', toggleTeamModal);
   refs.modalTeamBackdrop.addEventListener('click', onBackdropClickClose);
@@ -27,4 +28,3 @@ function onEscPress(event) {
     onCloseTeamModal();
   }
 }
-
