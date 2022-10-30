@@ -45,7 +45,7 @@ export class MoviesApiService {
       const { data } = await axios.get(
         `${ID_URL}${
           this.#id
-        }?api_key=${API_KEY}&append_to_response=videos&language=uk`
+        }?api_key=${API_KEY}&append_to_response=videos&language=en-US`
       );
       return data;
     } catch (error) {
@@ -53,14 +53,16 @@ export class MoviesApiService {
     }
   }
 
-  // async fetchTrailerById() {
-  // 	try {
-  // 		const {data} = await axios.get(`${ID_URL}${this.id}/videos?api_key=${API_KEY}&language=uk`);
-  // 		return data;
-  // 	} catch(error) {
-  // 		console.error('Smth wrong with api ID fetch' + error)
-  // 	}
-  // }
+  async fetchTrailerById() {
+    try {
+      const { data } = await axios.get(
+        `${ID_URL}${this.#id}/videos?api_key=${API_KEY}&language=en-US`
+      );
+      return data;
+    } catch (error) {
+      console.error('Smth wrong with api ID fetch' + error);
+    }
+  }
   get page() {
     return this.#page;
   }
@@ -91,6 +93,14 @@ export class MoviesApiService {
 
   set totalResults(newTotalResults) {
     this.#totalResults = newTotalResults;
+  }
+
+  get movieId() {
+    return this.#id;
+  }
+
+  set movieId(newId) {
+    this.#id = newId;
   }
 
   resetPage() {
