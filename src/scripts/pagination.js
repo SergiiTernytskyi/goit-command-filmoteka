@@ -1,15 +1,23 @@
 import Pagination from 'tui-pagination';
+import Notiflix from 'notiflix';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 import { refs } from './refs';
-// import { MoviesApiService } from './search-movie';
+import { MoviesApiService } from './api-work/apiServise';
 import { renderList } from './render-list';
+import { clearGallery } from './keyword/clearGallery';
+import { addImageNoResult } from './keyword/addImages';
+import { hideImage } from './keyword/deleteImage';
+import { spinerPlay, spinerStop } from './helpers/spin-ner';
 
 import sprite from '../images/sprite.svg';
 
 const arrowIcon = `${sprite}#icon-arrow`;
 const dotsIcon = `${sprite}#icon-dots`;
 
-function paginationSetup(page, totalItems) {
+const moviesApiService = new MoviesApiService();
+
+export function paginationSetup(page, totalItems) {
   const paginationOptions = {
     page,
     totalItems,
@@ -41,21 +49,103 @@ function paginationSetup(page, totalItems) {
 
   pagination.on('afterMove', async event => {
     if (moviesApiService.searchType === 'trending') {
+      spinerPlay();
       try {
-        // moviesApiService.page = event.page;
-        // const data = await moviesApiService.searchTrendingMovies();
-        renderList(data.results);
+        moviesApiService.page = event.page;
+        const data = await moviesApiService.fetchTrendData();
+        renderGallery(renderList(data.results));
       } catch (error) {
         console.log(error);
+      } finally {
+        spinerStop();
       }
     } else if (moviesApiService.searchType === 'word') {
+      spinerPlay();
       try {
-        // moviesApiService.page = event.page;
-        // const data = await moviesApiService.searchMovieByWord();
-        renderList(data.results);
+        console.log(event.page);
+        moviesApiService.page = event.page;
+        const data = await moviesApiService.fetchMovieByWord();
+        renderGallery(renderList(data.results));
       } catch (error) {
         console.log(error);
+      } finally {
+        spinerStop();
       }
     }
   });
+}
+
+refs.form.addEventListener('submit', onSearch);
+
+async function onSearch(e) {
+  e.preventDefault();
+  spinerPlay();
+
+  const {
+    elements: { query },
+  } = e.currentTarget;
+
+  const searchQuery = query.value.trim().toLowerCase();
+
+  if (!searchQuery) {
+    return Notiflix.Notify.warning(`Please enter name of the movie`);
+  }
+
+  moviesApiService.query = searchQuery;
+  moviesApiService.searchType = 'word';
+  moviesApiService.resetPage();
+
+  try {
+    const data = await moviesApiService.fetchMovieByWord();
+
+    if (data.total_pages === 0) {
+      Report.failure(
+        'No Result &#128584',
+        'Search result not successful. Enter the correct movie name and ',
+        'Okay &#128527'
+      );
+
+      clearGallery();
+      refs.form.reset();
+      return addImageNoResult();
+    }
+
+    if (data.total_results <= 20) {
+      refs.pagination.classList.add('pagination-hidden');
+      return;
+    }
+
+    hideImage();
+    clearGallery();
+    refs.form.reset();
+
+    renderGallery(renderList(data.results));
+    moviesApiService.totalResults = data.total_results;
+
+    paginationSetup(moviesApiService.page, moviesApiService.totalResults);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    spinerStop();
+  }
+}
+
+async function pageRender() {
+  spinerPlay();
+  try {
+    const data = await moviesApiService.fetchTrendData();
+    moviesApiService.totalResults = data.total_results;
+    paginationSetup(moviesApiService.page, moviesApiService.totalResults);
+    renderGallery(renderList(data.results));
+  } catch (error) {
+    console.log(error);
+  } finally {
+    spinerStop();
+  }
+}
+
+pageRender();
+
+function renderGallery(value) {
+  refs.list.innerHTML = value;
 }

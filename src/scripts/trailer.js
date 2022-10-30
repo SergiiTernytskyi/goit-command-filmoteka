@@ -10,8 +10,8 @@ export default async function findTrailer(movieId) {
     const data = response.data.results;
     for (let i = 0; i < data.length; i += 1) {
       if (data[i].type === "Trailer") {
-        if (data[i].name.indexOf('Trailer') > 0) {
-          const trailerMarkup = `<div class="backdropTrailer">
+        if (data[i].name.indexOf("Trailer") > 0) {
+          return `<div class="backdropTrailer">
               <iframe 
                 class="trailerPlayer"
                 src="https://www.youtube.com/embed/${data[i].key}" 
@@ -26,7 +26,6 @@ export default async function findTrailer(movieId) {
                 allowfullscreen>
               </iframe>
             </div>`
-          return trailerMarkup
         }
       }
     }
@@ -34,3 +33,4 @@ export default async function findTrailer(movieId) {
     console.log('error')
   }
 }
+
