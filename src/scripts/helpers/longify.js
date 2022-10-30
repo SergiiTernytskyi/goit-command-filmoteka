@@ -1,4 +1,4 @@
-const timeout = 1000;
+const timeout = 500;
 
 export function longify(value) {
   setTimeout(value, timeout);

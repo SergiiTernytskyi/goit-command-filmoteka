@@ -60,7 +60,7 @@ async function paginationSetup(page, totalItems) {
         const data = await moviesApiService.fetchTrendData();
 
         renderGallery(data.results);
-        onToTopBtn();
+        longify(onToTopBtn);
       } catch (error) {
         console.log(error);
       } finally {
@@ -74,7 +74,7 @@ async function paginationSetup(page, totalItems) {
         const data = await moviesApiService.fetchMovieByWord();
 
         renderGallery(data.results);
-        onToTopBtn();
+        longify(onToTopBtn);
       } catch (error) {
         console.log(error);
       } finally {
