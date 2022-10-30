@@ -143,4 +143,11 @@ function openTrailer(e) {
       .then(data => (body.insertAdjacentHTML('afterbegin', data)));
   }
 }
+window.addEventListener('click', closeTrailer)
 
+function closeTrailer(e) {
+  if (e.target.className === "backdropTrailer") {
+    e.target.remove()
+    window.removeEventListener('click', closeTrailer)
+  }
+}
