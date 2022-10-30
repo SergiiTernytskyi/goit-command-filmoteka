@@ -158,16 +158,34 @@ const body = document.querySelector('body');
 refs.filmContainer.addEventListener('click', openTrailer);
 
 function openTrailer(e) {
-  if (e.target.nodeName === 'path') {
-    const key = e.target.parentElement.parentElement.attributes[2].value;
-    findTrailer(key).then(data => body.insertAdjacentHTML('afterbegin', data));
-    window.addEventListener('click', closeTrailer);
+
+  if (e.target.nodeName === "path" || e.target.nodeName === "IMG") {
+    const key = e.target.parentElement.parentElement.dataset.filmid;
+    console.dir(key)
+    findTrailer(key)
+      .then(data => (body.insertAdjacentHTML('afterbegin', data)));
+    window.addEventListener('click', closeBackdropTrailer);
+    window.addEventListener('keydown', onEscCloseTrailer);
+    window.removeEventListener('keydown', onEscPress)
   }
+
 }
 
-function closeTrailer(e) {
-  if (e.target.className === 'backdropTrailer') {
-    e.target.remove();
-    window.removeEventListener('click', closeTrailer);
+
+function closeBackdropTrailer(e) {
+  if (e.target.className === "backdropTrailer") {
+    e.target.remove()
+    window.removeEventListener('click', closeBackdropTrailer)
+    window.removeEventListener('keydown', onEscCloseTrailer)
+    window.addEventListener('keydown', onEscPress)
+  }
+}
+function onEscCloseTrailer(e) {
+  if (e.key === "Escape") {
+    body.children[0].remove()
+    window.removeEventListener('click', closeBackdropTrailer)
+    window.removeEventListener('keydown', onEscCloseTrailer)
+    window.addEventListener('keydown', onEscPress)
+
   }
 }

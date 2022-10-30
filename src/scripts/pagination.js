@@ -1,13 +1,18 @@
 import Pagination from 'tui-pagination';
-import Notiflix from 'notiflix';
-import { Report } from 'notiflix/build/notiflix-report-aio';
 
 import { refs } from './refs';
 import { MoviesApiService } from './api-work/apiServise';
-import { renderList } from './render-list';
+
 import { clearGallery } from './keyword/clearGallery';
 import { addImageNoResult } from './keyword/addImages';
 import { hideImage } from './keyword/deleteImage';
+
+import { spinerPlay, spinerStop } from './helpers/spin-ner';
+import { renderGallery } from './helpers/render';
+import { longify } from './helpers/longify';
+import { paginationHide } from './helpers/hide-pagination';
+import { onToTopBtn } from './btnToTop';
+import { showWarningMessage, showReportFailture } from './helpers/messages';
 
 import sprite from '../images/sprite.svg';
 
@@ -16,7 +21,7 @@ const dotsIcon = `${sprite}#icon-dots`;
 
 const moviesApiService = new MoviesApiService();
 
-export function paginationSetup(page, totalItems) {
+async function paginationSetup(page, totalItems) {
   const paginationOptions = {
     page,
     totalItems,
@@ -48,27 +53,36 @@ export function paginationSetup(page, totalItems) {
 
   pagination.on('afterMove', async event => {
     if (moviesApiService.searchType === 'trending') {
+      spinerPlay();
+
       try {
         moviesApiService.page = event.page;
         const data = await moviesApiService.fetchTrendData();
-        renderGallery(renderList(data.results));
+
+        renderGallery(data.results);
+        longify(onToTopBtn);
       } catch (error) {
         console.log(error);
+      } finally {
+        longify(spinerStop);
       }
     } else if (moviesApiService.searchType === 'word') {
+      spinerPlay();
+
       try {
-        console.log(event.page);
         moviesApiService.page = event.page;
         const data = await moviesApiService.fetchMovieByWord();
-        renderGallery(renderList(data.results));
+
+        renderGallery(data.results);
+        longify(onToTopBtn);
       } catch (error) {
         console.log(error);
+      } finally {
+        longify(spinerStop);
       }
     }
   });
 }
-
-refs.form.addEventListener('submit', onSearch);
 
 async function onSearch(e) {
   e.preventDefault();
@@ -80,7 +94,7 @@ async function onSearch(e) {
   const searchQuery = query.value.trim().toLowerCase();
 
   if (!searchQuery) {
-    return Notiflix.Notify.warning(`Please enter name of the movie`);
+    return showWarningMessage();
   }
 
   moviesApiService.query = searchQuery;
@@ -88,22 +102,20 @@ async function onSearch(e) {
   moviesApiService.resetPage();
 
   try {
+    spinerPlay();
     const data = await moviesApiService.fetchMovieByWord();
 
     if (data.total_pages === 0) {
-      Report.failure(
-        'No Result &#128584',
-        'Search result not successful. Enter the correct movie name and ',
-        'Okay &#128527'
-      );
+      showReportFailture();
 
       clearGallery();
       refs.form.reset();
+      paginationHide();
       return addImageNoResult();
     }
 
     if (data.total_results <= 20) {
-      refs.pagination.classList.add('pagination-hidden');
+      paginationHide();
       return;
     }
 
@@ -111,28 +123,31 @@ async function onSearch(e) {
     clearGallery();
     refs.form.reset();
 
-    renderGallery(renderList(data.results));
+    renderGallery(data.results);
     moviesApiService.totalResults = data.total_results;
 
     paginationSetup(moviesApiService.page, moviesApiService.totalResults);
   } catch (error) {
     console.log(error);
+  } finally {
+    longify(spinerStop);
   }
 }
 
 async function pageRender() {
+  spinerPlay();
   try {
     const data = await moviesApiService.fetchTrendData();
-    renderGallery(renderList(data.results));
     moviesApiService.totalResults = data.total_results;
     paginationSetup(moviesApiService.page, moviesApiService.totalResults);
+
+    renderGallery(data.results);
   } catch (error) {
     console.log(error);
+  } finally {
+    longify(spinerStop);
   }
 }
 
 pageRender();
-
-function renderGallery(value) {
-  refs.list.innerHTML = value;
-}
+refs.form.addEventListener('submit', onSearch);

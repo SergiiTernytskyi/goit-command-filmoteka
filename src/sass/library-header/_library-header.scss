@@ -1,6 +1,4 @@
 .library-header {
-  // margin-left: auto;
-  // margin-right: auto;
 
   background-size: cover;
   background-position: center;
@@ -101,6 +99,13 @@
   text-transform: uppercase;
 
   color: var(--main-light-color);
+
+  &:hover,
+  &:focus{
+  border: none;
+  animation: color-change-3x 1s linear infinite alternate both;
+    
+  }
   @include tablet {
     width: 152px;
   }
@@ -119,4 +124,21 @@
   border: none;
   background: var(--accent-color);
   box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+}
+
+
+@keyframes color-change-3x {
+  
+  0% {
+    background: #ffb67a;
+   
+  }
+
+  50% {
+    background:#fa9848;
+  }
+
+  100% {
+    background: var(--accent-color);
+  }
 }

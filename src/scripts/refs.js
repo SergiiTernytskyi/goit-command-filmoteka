@@ -8,10 +8,13 @@ export const refs = {
   myLibraryFilmList: document.querySelector('.films__list'),
   form: document.querySelector('.header-form'),
   list: document.querySelector('.gallery'),
+  spinNer: document.querySelector('.js-spinner'),
+  loadSpin: document.querySelector('[js-data]'),
 
   pagination: document.querySelector('.tui-pagination'),
 
   openModalLink: document.querySelector('.footer-content__link'),
   closeModalBtn: document.querySelector('.modal-team__close-btn'),
   teamModal: document.querySelector('[data-team-modal]'),
+  modalTeamBackdrop: document.querySelector('.backdrop'),
 };
