@@ -27,19 +27,7 @@ export default async function findTrailer(movieId) {
       if (data[i].type === 'Trailer') {
         if (data[i].name.indexOf('Trailer') > 0) {
           return `<div class="backdropTrailer">
-              <iframe 
-                class="trailerPlayer"
-                src="https://www.youtube.com/embed/${data[i].key}" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; 
-                autoplay; 
-                clipboard-write;
-                encrypted-media;
-                gyroscope;
-                picture-in-picture" 
-                allowfullscreen>
-              </iframe>
+              <iframe src="https://www.youtube.com/embed/${data[i].key}" class="trailerPlayer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>`;
         }
       }
