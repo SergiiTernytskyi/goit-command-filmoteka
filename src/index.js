@@ -8,3 +8,4 @@ import './js/fetchPopular';
 import './js/modalFilm';
 import './scripts/team-modal';
 import './scripts/btnToTop';
+import './js/spinner';
