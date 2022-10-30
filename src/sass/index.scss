@@ -1,8 +1,9 @@
-@import './common';
-@import './btns-watched-qweqe';
 @import './reset';
 @import './vars';
 @import './mixins';
+@import './common';
+@import './backdrop';
+@import './btns-watched-qweqe';
 @import './hidden';
 @import './film-modal';
 @import './container';
@@ -11,4 +12,6 @@
 @import './cadsList';
 @import './footer';
 @import './modal-team';
+@import './trailer';
 @import './pagination';
+@import './spin/common-spin';

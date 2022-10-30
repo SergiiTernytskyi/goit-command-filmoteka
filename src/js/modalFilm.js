@@ -1,9 +1,14 @@
+import findTrailer from './../scripts/trailer';
+import { setupModalButtons } from '../scripts/filmmodal';
 const refs = {
   filmList: document.querySelector('.gallery'),
   modalBackdrop: document.querySelector('.backdrop-film-modal'),
   closeFilmModalBtn: document.querySelector('.close-btn-js'),
   body: document.querySelector('body'),
   filmContainer: document.querySelector('.film-modal__container'),
+
+  filmItem: document.querySelector('.card__item'),
+  openTrailerBtn: document.querySelector('.open-trailer-btn'),
 };
 
 refs.filmList.addEventListener('click', onFilmOpen);
@@ -16,6 +21,9 @@ function onFilmOpen(event) {
   refs.filmContainer.innerHTML = '';
 
   let filmId = event.target.closest('.card__item').dataset.filmid;
+  const filmData = event.target.closest('.card__item').dataset.filminfo;
+  const filmInfo = JSON.parse(filmData);
+  console.log(filmData);
 
   fetchOneFilm(filmId)
     .then(film => {
@@ -23,6 +31,9 @@ function onFilmOpen(event) {
     })
     .then(markupFilm => {
       return (refs.filmContainer.innerHTML = markupFilm);
+    })
+    .then(() => {
+      setupModalButtons(filmInfo);
     })
     .catch(error => console.log(error));
 
@@ -86,7 +97,9 @@ function createMarkup(film) {
         <img src="https://image.tmdb.org/t/p/w500${film.poster_path}" alt="${
     film.original_title
   }" class="film-modal__img" />
-       <button type="button" class="open-trailer-btn">
+       <button type="button" class="open-trailer-btn" data-filmid="${film.id}">
+
+
        <svg class="icon-play" width="68" height="48" viewBox="0 0 68 48">
        <path class="icon-path" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#212121"></path>
        <path d="M 45,24 27,14 27,34" fill="#fff"></path>
@@ -127,7 +140,7 @@ function createMarkup(film) {
         <div class="film-modal__btn-container">
           <button
             type="button"
-            class="film-modal__watch-btn film-modal__btn library-btn active"
+            class="film-modal__watch-btn film-modal__btn library-btn"
           >
             ADD TO WATCHED
           </button>
@@ -141,4 +154,34 @@ function createMarkup(film) {
       </div>
     </div>`;
   return markupFilm;
+}
+const body = document.querySelector('body');
+refs.filmContainer.addEventListener('click', openTrailer);
+
+function openTrailer(e) {
+  if (e.target.nodeName === 'path' || e.target.nodeName === 'IMG') {
+    const key = e.target.parentElement.parentElement.dataset.filmid;
+    console.dir(key);
+    findTrailer(key).then(data => body.insertAdjacentHTML('afterbegin', data));
+    window.addEventListener('click', closeBackdropTrailer);
+    window.addEventListener('keydown', onEscCloseTrailer);
+    window.removeEventListener('keydown', onEscPress);
+  }
+}
+
+function closeBackdropTrailer(e) {
+  if (e.target.className === 'backdropTrailer') {
+    e.target.remove();
+    window.removeEventListener('click', closeBackdropTrailer);
+    window.removeEventListener('keydown', onEscCloseTrailer);
+    window.addEventListener('keydown', onEscPress);
+  }
+}
+function onEscCloseTrailer(e) {
+  if (e.key === 'Escape') {
+    body.children[0].remove();
+    window.removeEventListener('click', closeBackdropTrailer);
+    window.removeEventListener('keydown', onEscCloseTrailer);
+    window.addEventListener('keydown', onEscPress);
+  }
 }

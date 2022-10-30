@@ -1,0 +1,16 @@
+.backdropTrailer {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: rgba($color: black, $alpha: 0.8);
+}
+.trailerPlayer {
+  width: 90vw;
+  height: 70vh;
+}

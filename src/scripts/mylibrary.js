@@ -1,35 +1,34 @@
-import { getFilmbyId } from './fetchfromAPI';
-import { initModal } from './filmmodal';
 import { save, load, remove } from './localestorageservices';
 import { refs } from './refs';
+import { renderList } from './render-list';
 
-function toggleItems(filmId, storageKey) {
-  let watchedItems = load(storageKey);
+function toggleItems(film, storageKey) {
+  let storedItems = load(storageKey);
   // watchedItems = watchedItems ? watchedItems : [];
-  if (Array.isArray(watchedItems)) {
-    const existIndex = watchedItems.indexOf(filmId);
+  if (Array.isArray(storedItems)) {
+    const existIndex = storedItems.findIndex(item => item.id === film.id);
     if (existIndex > -1) {
-      watchedItems.splice(existIndex, 1);
+      storedItems.splice(existIndex, 1);
     } else {
-      watchedItems.push(filmId);
+      storedItems.push(film);
     }
   } else {
-    watchedItems = [filmId];
+    storedItems = [film];
   }
-  save(storageKey, watchedItems);
+  save(storageKey, storedItems);
 }
-export function toggleWatched(filmId) {
-  toggleItems(filmId, 'watched');
+export function toggleWatched(film) {
+  toggleItems(film, 'watched');
 }
 
-export function toggleQueue(filmId) {
-  toggleItems(filmId, 'queue');
+export function toggleQueue(film) {
+  toggleItems(film, 'queue');
 }
 
 function findFilmIndex(filmId, storageKey) {
   let items = load(storageKey);
   if (Array.isArray(items)) {
-    return items.indexOf(filmId);
+    return items.findIndex(item => item.id === filmId);
   }
   return -1;
 }
@@ -45,53 +44,41 @@ export function isFilmQueued(filmId) {
 export async function loadAllFilms() {
   const watchedFilms = load('watched') || [];
   const queuedFilms = load('queue') || [];
-  const filmsId = [...watchedFilms, ...queuedFilms];
-  console.log(filmsId);
-  const filmsPromises = filmsId.map(async filmId => await getFilmbyId(filmId));
-  const films = await Promise.all(filmsPromises);
-  refs.myLibraryFilmList.insertAdjacentHTML(
-    'beforeend',
-    createFilmMarkup(films)
-  );
+  const films = [...watchedFilms, ...queuedFilms];
+
+  refs.myLibraryFilmList.insertAdjacentHTML('beforeend', renderList(films));
 }
 export async function loadWatchedFilms() {
   const watchedFilms = load('watched') || [];
-
-  const watchedfilmsId = [...watchedFilms];
-  console.log(watchedfilmsId);
-  const filmsPromises = watchedfilmsId.map(
-    async filmId => await getFilmbyId(filmId)
-  );
-  const films = await Promise.all(filmsPromises);
+  refs.myLibraryFilmList.innerHTML = '';
   refs.myLibraryFilmList.insertAdjacentHTML(
     'beforeend',
-    createFilmMarkup(films)
+    renderList(watchedFilms)
   );
 }
 
 export async function loadQueuedFilms() {
   const queuedFilms = load('queue') || [];
-
-  const queuedfilmsId = [...queuedFilms];
-  console.log(queuedfilmsId);
-  const filmsPromises = queuedfilmsId.map(
-    async filmId => await getFilmbyId(filmId)
-  );
-  const films = await Promise.all(filmsPromises);
+  refs.myLibraryFilmList.innerHTML = '';
   refs.myLibraryFilmList.insertAdjacentHTML(
     'beforeend',
-    createFilmMarkup(films)
+    renderList(queuedFilms)
   );
 }
 
-function createFilmMarkup(films) {
-  return films
-    .map(({ title }) => {
-      return /*html*/ `
-  
-    <li class="film-card">${title}</li>
-   
-`;
-    })
-    .join('');
+export function setupLIbraryBtns() {
+  function onQueueBtnClick() {
+    refs.queueLibraryBtn.classList.add('active');
+    refs.watchedLibraryBtn.classList.remove('active');
+    loadQueuedFilms();
+  }
+
+  function onWatchedBtnClick() {
+    refs.watchedLibraryBtn.classList.add('active');
+    refs.queueLibraryBtn.classList.remove('active');
+    loadWatchedFilms();
+  }
+
+  refs.queueLibraryBtn.addEventListener('click', onQueueBtnClick);
+  refs.watchedLibraryBtn.addEventListener('click', onWatchedBtnClick);
 }

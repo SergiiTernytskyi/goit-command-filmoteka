@@ -1,15 +1,27 @@
 import Pagination from 'tui-pagination';
 
 import { refs } from './refs';
-// import { MoviesApiService } from './search-movie';
-import { renderList } from './render-list';
+import { MoviesApiService } from './api-work/apiServise';
+
+import { clearGallery } from './keyword/clearGallery';
+import { addImageNoResult } from './keyword/addImages';
+import { hideImage } from './keyword/deleteImage';
+
+import { spinerPlay, spinerStop } from './helpers/spin-ner';
+import { renderGallery } from './helpers/render';
+import { longify } from './helpers/longify';
+import { paginationHide } from './helpers/hide-pagination';
+import { onToTopBtn } from './btnToTop';
+import { showWarningMessage, showReportFailture } from './helpers/messages';
 
 import sprite from '../images/sprite.svg';
 
 const arrowIcon = `${sprite}#icon-arrow`;
 const dotsIcon = `${sprite}#icon-dots`;
 
-function paginationSetup(page, totalItems) {
+const moviesApiService = new MoviesApiService();
+
+async function paginationSetup(page, totalItems) {
   const paginationOptions = {
     page,
     totalItems,
@@ -41,21 +53,101 @@ function paginationSetup(page, totalItems) {
 
   pagination.on('afterMove', async event => {
     if (moviesApiService.searchType === 'trending') {
+      spinerPlay();
+
       try {
-        // moviesApiService.page = event.page;
-        // const data = await moviesApiService.searchTrendingMovies();
-        renderList(data.results);
+        moviesApiService.page = event.page;
+        const data = await moviesApiService.fetchTrendData();
+
+        renderGallery(data.results);
+        longify(onToTopBtn);
       } catch (error) {
         console.log(error);
+      } finally {
+        longify(spinerStop);
       }
     } else if (moviesApiService.searchType === 'word') {
+      spinerPlay();
+
       try {
-        // moviesApiService.page = event.page;
-        // const data = await moviesApiService.searchMovieByWord();
-        renderList(data.results);
+        moviesApiService.page = event.page;
+        const data = await moviesApiService.fetchMovieByWord();
+
+        renderGallery(data.results);
+        longify(onToTopBtn);
       } catch (error) {
         console.log(error);
+      } finally {
+        longify(spinerStop);
       }
     }
   });
 }
+
+async function onSearch(e) {
+  e.preventDefault();
+
+  const {
+    elements: { query },
+  } = e.currentTarget;
+
+  const searchQuery = query.value.trim().toLowerCase();
+
+  if (!searchQuery) {
+    return showWarningMessage();
+  }
+
+  moviesApiService.query = searchQuery;
+  moviesApiService.searchType = 'word';
+  moviesApiService.resetPage();
+
+  try {
+    spinerPlay();
+    const data = await moviesApiService.fetchMovieByWord();
+
+    if (data.total_pages === 0) {
+      showReportFailture();
+
+      clearGallery();
+      refs.form.reset();
+      paginationHide();
+      return addImageNoResult();
+    }
+
+    if (data.total_results <= 20) {
+      paginationHide();
+      return;
+    }
+
+    hideImage();
+    clearGallery();
+    refs.form.reset();
+
+    renderGallery(data.results);
+    moviesApiService.totalResults = data.total_results;
+
+    paginationSetup(moviesApiService.page, moviesApiService.totalResults);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    longify(spinerStop);
+  }
+}
+
+async function pageRender() {
+  spinerPlay();
+  try {
+    const data = await moviesApiService.fetchTrendData();
+    moviesApiService.totalResults = data.total_results;
+    paginationSetup(moviesApiService.page, moviesApiService.totalResults);
+
+    renderGallery(data.results);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    longify(spinerStop);
+  }
+}
+
+pageRender();
+refs.form.addEventListener('submit', onSearch);

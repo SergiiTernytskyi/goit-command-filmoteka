@@ -13,15 +13,6 @@
     url(../images/background/mobile.jpg);
   opacity: 0.9;
 
-  @include retina {
-    background-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.56),
-        rgba(0, 0, 0, 0.56)
-      ),
-      url(../images/background/mobile2x.jpg);
-  }
-
   @include tablet {
     background-image: linear-gradient(
         to right,
@@ -79,10 +70,13 @@
     margin-bottom: 35px;
   }
 }
+.logo-wrap {
+  cursor: pointer;
+}
 
 .logo-wrap:hover .logo,
 .logo-wrap:focus .logo {
-  animation: lightSpeedInLeft;
+  animation: flip;
   animation-duration: 2000ms;
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -181,6 +175,10 @@
 /* -------------------------------------------------------------------------- */
 
 .header-form {
+  animation: pulse;
+  animation-duration: 2000ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -201,6 +199,7 @@
   }
 }
 .header-form__input {
+  cursor: pointer;
   width: 100%;
   height: 20px;
   padding-bottom: 4px;
@@ -336,3 +335,4 @@
 .opacity-icon {
   opacity: 0.4;
 }
+
