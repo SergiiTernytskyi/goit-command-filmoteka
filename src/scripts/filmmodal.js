@@ -4,7 +4,11 @@ import {
   isFilmWatched,
   isFilmQueued,
 } from './mylibrary';
-import { refs } from './refs';
+
+const refs = {
+  watchedBtn: null,
+  queueBtn: null,
+};
 
 function updateWatchedBtnText(filmId) {
   if (isFilmWatched(filmId)) {
@@ -25,19 +29,17 @@ function updateQueuedBtnText(filmId) {
   }
 }
 
-export function setupModalButtons(filmId) {
-  console.log(document.querySelector('.film-modal__watch-btn'));
+export function setupModalButtons(film) {
+  refs.watchedBtn = document.querySelector('.film-modal__watch-btn');
+  refs.queueBtn = document.querySelector('.film-modal__queue-btn');
   refs.watchedBtn.addEventListener('click', () => {
-    toggleWatched(filmId);
-    updateWatchedBtnText(filmId);
+    toggleWatched(film);
+    updateWatchedBtnText(film.id);
   });
   refs.queueBtn.addEventListener('click', () => {
-    toggleQueue(filmId);
-    updateQueuedBtnText(filmId);
+    toggleQueue(film);
+    updateQueuedBtnText(film.id);
   });
-  updateWatchedBtnText(filmId);
-  updateQueuedBtnText(filmId);
+  updateWatchedBtnText(film.id);
+  updateQueuedBtnText(film.id);
 }
-// console.log(refs.watchedBtn);
-// console.log(refs.queueBtn);
-// console.log(refs.myLibraryFilmList);
