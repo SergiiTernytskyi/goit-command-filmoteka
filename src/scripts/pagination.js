@@ -8,6 +8,7 @@ import { renderList } from './render-list';
 import { clearGallery } from './keyword/clearGallery';
 import { addImageNoResult } from './keyword/addImages';
 import { hideImage } from './keyword/deleteImage';
+import { spinerPlay, spinerStop } from './helpers/spin-ner';
 
 import sprite from '../images/sprite.svg';
 
@@ -48,14 +49,18 @@ export function paginationSetup(page, totalItems) {
 
   pagination.on('afterMove', async event => {
     if (moviesApiService.searchType === 'trending') {
+      spinerPlay();
       try {
         moviesApiService.page = event.page;
         const data = await moviesApiService.fetchTrendData();
         renderGallery(renderList(data.results));
       } catch (error) {
         console.log(error);
+      } finally {
+        spinerStop();
       }
     } else if (moviesApiService.searchType === 'word') {
+      spinerPlay();
       try {
         console.log(event.page);
         moviesApiService.page = event.page;
@@ -63,6 +68,8 @@ export function paginationSetup(page, totalItems) {
         renderGallery(renderList(data.results));
       } catch (error) {
         console.log(error);
+      } finally {
+        spinerStop();
       }
     }
   });
@@ -72,6 +79,7 @@ refs.form.addEventListener('submit', onSearch);
 
 async function onSearch(e) {
   e.preventDefault();
+  spinerPlay();
 
   const {
     elements: { query },
@@ -117,17 +125,22 @@ async function onSearch(e) {
     paginationSetup(moviesApiService.page, moviesApiService.totalResults);
   } catch (error) {
     console.log(error);
+  } finally {
+    spinerStop();
   }
 }
 
 async function pageRender() {
+  spinerPlay();
   try {
     const data = await moviesApiService.fetchTrendData();
-    renderGallery(renderList(data.results));
     moviesApiService.totalResults = data.total_results;
     paginationSetup(moviesApiService.page, moviesApiService.totalResults);
+    renderGallery(renderList(data.results));
   } catch (error) {
     console.log(error);
+  } finally {
+    spinerStop();
   }
 }
 
