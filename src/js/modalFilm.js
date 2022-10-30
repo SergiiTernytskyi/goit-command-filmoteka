@@ -4,7 +4,6 @@ const refs = {
   closeFilmModalBtn: document.querySelector('.close-btn-js'),
   body: document.querySelector('body'),
   filmContainer: document.querySelector('.film-modal__container'),
-  filmItem: document.querySelector('.card__item'),
 };
 
 refs.filmList.addEventListener('click', onFilmOpen);
@@ -58,7 +57,17 @@ function onEscPress(event) {
 
 // -----------------------------------------------
 
-import listOfGenres from '../scripts/genres-list';
+function filmGenres(list) {
+  let newList = [];
+  list.forEach(item => {
+    newList.push(item.name);
+  });
+  if (newList.length > 3) {
+    newList = newList.slice(0, 2);
+    newList.push('Other');
+  }
+  return newList.join(', ');
+}
 
 function fetchOneFilm(filmId) {
   return fetch(
@@ -74,7 +83,9 @@ function fetchOneFilm(filmId) {
 function createMarkup(film) {
   const markupFilm = `<div class="film-modal__card" data-filmid="${film.id}">
       <div class="film-modal__img-thumb">
-        <img src="https://image.tmdb.org/t/p/w500${film.poster_path}" alt="${film.original_title}" class="film-modal__img" />
+        <img src="https://image.tmdb.org/t/p/w500${film.poster_path}" alt="${
+    film.original_title
+  }" class="film-modal__img" />
        <button type="button" class="open-trailer-btn">
        <svg class="icon-play" width="68" height="48" viewBox="0 0 68 48">
        <path class="icon-path" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#212121"></path>
@@ -89,13 +100,15 @@ function createMarkup(film) {
             <li class="film-modal__item">
               <p class="film-modal__info-sub-title">Vote / Votes</p>
               <p class="film-modal__info-text">
-                <span class="film-modal__info-text-vote">${film.vote_average}</span> /
+                <span class="film-modal__info-text-vote">${film.vote_average.toFixed(
+                  1
+                )}</span> /
                 <span class="film-modal__info-text-votes">1260</span>
               </p>
             </li>
             <li class="film-modal__item">
               <p class="film-modal__info-sub-title">Popularity</p>
-              <p class="film-modal__info-text">${film.popularity}</p>
+              <p class="film-modal__info-text">${film.popularity.toFixed(1)}</p>
             </li>
             <li class="film-modal__item">
               <p class="film-modal__info-sub-title">Original Title</p>
@@ -103,7 +116,7 @@ function createMarkup(film) {
             </li>
             <li class="film-modal__item">
               <p class="film-modal__info-sub-title">Genre</p>
-              <p class="film-modal__info-text"></p>
+              <p class="film-modal__info-text">${filmGenres(film.genres)}</p>
             </li>
           </ul>
         </div>
