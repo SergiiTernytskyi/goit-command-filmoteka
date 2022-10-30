@@ -1,6 +1,6 @@
 .library-header {
-  margin-left: auto;
-  margin-right: auto;
+  // margin-left: auto;
+  // margin-right: auto;
 
   background-size: cover;
   background-position: center;
@@ -67,6 +67,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 22px;
+  padding-top: 5px;
   @include tablet {
     margin-bottom: 20px;
   }

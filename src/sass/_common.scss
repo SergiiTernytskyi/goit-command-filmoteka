@@ -1,9 +1,25 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+html {
+  scroll-behavior: smooth;
+}
 
 body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
   font-family: 'Roboto', sans-serif;
+}
+
+main {
+  flex-grow: 1;
 }
 
 button {
   cursor: pointer;
+}
+
+.no-scroll {
+  overflow-y: hidden;
 }

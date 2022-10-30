@@ -29,6 +29,7 @@
     }
     @include tablet{
         width: 336px;
+        
     }
     @include desktop{
         width: 394px;
@@ -45,6 +46,15 @@ transition: transform 350ms linear;
 }
 .card__img{
     border-radius: 5px;
+    @include tablet{
+        width: 336px;
+        height: 455px;
+    }
+    @include desktop{
+        width: 394px;
+        height: 574px;
+    }
+    
 }
 .card__title{
     font-family: 'Roboto';
@@ -65,4 +75,31 @@ font-weight: 500;
 font-size: 12px;
 line-height: 16px;
 color: var(--accent-color);
+}
+.btn-to-top {
+  position: fixed;
+    bottom: 3vh;
+    right: -140px;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20%;
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+    cursor: pointer;
+    background-color: black;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-to-top:hover {
+  animation: animate90 400ms linear 150ms forwards;
+  background-color: blue;
+}
+.btn-to-top--visible {
+  right: calc(2.5%);
+  opacity: 1;
+  visibility: visible;
 }

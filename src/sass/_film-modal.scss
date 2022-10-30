@@ -5,8 +5,11 @@
   position: fixed;
   top: 0;
   left: 0;
-  // transition: opacity 300ms, visibility 300ms;
-  // overflow-y: scroll;
+  transition: opacity 300ms, visibility 300ms;
+}
+
+.backdrop-film-modal.is-hidden .film-modal {
+  transform: translate(-50%, -50%) scale(0);
 }
 
 .film-modal {
@@ -18,7 +21,8 @@
   position: relative;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
+  transition: 300ms;
   overflow-y: scroll;
 
   @include tablet {
@@ -63,8 +67,7 @@
   }
 }
 
-.film-modal__img {
-  background-color: var(--accent-color);
+.film-modal__img-thumb {
   min-width: 240px;
   max-width: 300px;
   height: 357px;
@@ -72,7 +75,15 @@
   border-radius: 5px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transition: opacity 250ms var(--timing-function);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    opacity: 0.9;
+  }
 
   @include tablet {
     width: 264px;
@@ -85,7 +96,46 @@
     max-width: 375px;
     height: 478px;
     margin-right: 16px;
+    margin-bottom: 0;
   }
+}
+
+.film-modal__img {
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.open-trailer-btn {
+  display: block;
+  width: 68px;
+  height: 48px;
+  border-radius: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  border: none;
+  outline: transparent;
+}
+
+// .icon-play {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   object-fit: contain;
+// }
+
+.icon-path {
+  fill: rgba(0, 0, 0, 0.5);
+  transition: fill 250ms var(--timing-function);
+}
+
+.film-modal__img-thumb:hover .icon-path,
+.film-modal__img-thumb:focus .icon-path {
+  fill: rgb(213, 9, 9);
 }
 
 .film-modal__title {
@@ -193,13 +243,13 @@
 
   @include tablet {
     overflow-y: scroll;
-    height: 236px;
+    max-height: 236px;
     width: 264px;
   }
 
   @include desktop {
     width: 391px;
-    height: 160px;
+    // height: 160px;
     overflow-y: unset;
   }
 }
@@ -242,12 +292,12 @@
 .film-modal__watch-btn {
   color: var(--main-light-color);
   background-color: var(--accent-color);
-  transition: color 250ms var(--timing-function);
+  // transition: color 250ms var(--timing-function);
 
-  &:hover,
-  &:focus {
-    color: var(--main-dark-color);
-  }
+  // &:hover,
+  // &:focus {
+  //   color: var(--main-dark-color);
+  // }
 
   @include responsive {
     margin-right: 15px;
@@ -262,12 +312,12 @@
   color: var(--main-dark-color);
   background-color: transparent;
   border: 1px solid var(--main-dark-color);
-  transition: color 250ms var(--timing-function),
-    border-color 250ms var(--timing-function);
+  // transition: color 250ms var(--timing-function),
+  //   border-color 250ms var(--timing-function);
 
-  &:hover,
-  &:focus {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-  }
+  // &:hover,
+  // &:focus {
+  //   border-color: var(--accent-color);
+  //   color: var(--accent-color);
+  // }
 }

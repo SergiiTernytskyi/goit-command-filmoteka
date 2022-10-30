@@ -1,3 +1,10 @@
+// import './library.js';
 import 'animate.css/animate.css';
-import './js/renderList'
-import './js/genresList'
+import './scripts/render-list';
+import './scripts/genres-list';
+import './scripts/keyword/seachKeyword';
+import './scripts/trailer';
+import './js/fetchPopular';
+import './js/modalFilm';
+import './scripts/team-modal';
+import './scripts/btnToTop';
