@@ -9,6 +9,8 @@ import { clearGallery } from './keyword/clearGallery';
 import { addImageNoResult } from './keyword/addImages';
 import { hideImage } from './keyword/deleteImage';
 import { spinerPlay, spinerStop } from './helpers/spin-ner';
+import { renderGallery } from './helpers/render';
+import { longify } from './helpers/longify';
 
 import sprite from '../images/sprite.svg';
 
@@ -50,26 +52,29 @@ export function paginationSetup(page, totalItems) {
   pagination.on('afterMove', async event => {
     if (moviesApiService.searchType === 'trending') {
       spinerPlay();
+
       try {
         moviesApiService.page = event.page;
         const data = await moviesApiService.fetchTrendData();
-        renderGallery(renderList(data.results));
+
+        renderGallery(data.results);
       } catch (error) {
         console.log(error);
       } finally {
-        spinerStop();
+        longify(spinerStop);
       }
     } else if (moviesApiService.searchType === 'word') {
       spinerPlay();
+
       try {
-        console.log(event.page);
         moviesApiService.page = event.page;
         const data = await moviesApiService.fetchMovieByWord();
-        renderGallery(renderList(data.results));
+
+        renderGallery(data.results);
       } catch (error) {
         console.log(error);
       } finally {
-        spinerStop();
+        longify(spinerStop);
       }
     }
   });
@@ -119,14 +124,14 @@ async function onSearch(e) {
     clearGallery();
     refs.form.reset();
 
-    renderGallery(renderList(data.results));
+    renderGallery(data.results);
     moviesApiService.totalResults = data.total_results;
 
     paginationSetup(moviesApiService.page, moviesApiService.totalResults);
   } catch (error) {
     console.log(error);
   } finally {
-    spinerStop();
+    longify(spinerStop);
   }
 }
 
@@ -136,16 +141,13 @@ async function pageRender() {
     const data = await moviesApiService.fetchTrendData();
     moviesApiService.totalResults = data.total_results;
     paginationSetup(moviesApiService.page, moviesApiService.totalResults);
-    renderGallery(renderList(data.results));
+
+    renderGallery(data.results);
   } catch (error) {
     console.log(error);
   } finally {
-    spinerStop();
+    longify(spinerStop);
   }
 }
 
 pageRender();
-
-function renderGallery(value) {
-  refs.list.innerHTML = value;
-}
