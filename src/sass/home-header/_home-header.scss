@@ -294,11 +294,12 @@
 /* -------------------------------------------------------------------------- */
 
 .theme-switch {
-  // width: 180px;
   display: flex;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 5px;
+
+  @include tablet {
+    justify-content: center;
+  }
 }
 
 .them-btn-wraper {
