@@ -1,4 +1,6 @@
 import { MoviesApiService } from './api-work/apiServise';
+import { spinerPlay, spinerStop } from './helpers/spin-ner';
+import { longify } from './helpers/longify';
 
 const moviesApiService = new MoviesApiService();
 
@@ -9,7 +11,7 @@ export default async function findTrailer(movieId) {
   //   URL: 'https://api.themoviedb.org/3/movie/',
   //   key: '86c51b00b5bb8cfadb7d5efaffb91bf1',
   // };
-
+  spinerPlay();
   moviesApiService.movieId = movieId;
 
   try {
@@ -44,5 +46,7 @@ export default async function findTrailer(movieId) {
     }
   } catch (error) {
     console.log('error');
+  } finally {
+    longify(spinerStop);
   }
 }
