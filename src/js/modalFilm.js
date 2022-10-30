@@ -141,9 +141,10 @@ function openTrailer(e) {
       const key = e.target.parentElement.parentElement.attributes[2].value;
     findTrailer(key)
       .then(data => (body.insertAdjacentHTML('afterbegin', data)));
+    window.addEventListener('click', closeTrailer);
   }
 }
-window.addEventListener('click', closeTrailer)
+
 
 function closeTrailer(e) {
   if (e.target.className === "backdropTrailer") {
