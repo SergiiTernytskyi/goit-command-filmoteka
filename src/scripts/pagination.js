@@ -1,16 +1,17 @@
 import Pagination from 'tui-pagination';
-import Notiflix from 'notiflix';
-import { Report } from 'notiflix/build/notiflix-report-aio';
 
 import { refs } from './refs';
 import { MoviesApiService } from './api-work/apiServise';
-import { renderList } from './render-list';
+
 import { clearGallery } from './keyword/clearGallery';
 import { addImageNoResult } from './keyword/addImages';
 import { hideImage } from './keyword/deleteImage';
+
 import { spinerPlay, spinerStop } from './helpers/spin-ner';
 import { renderGallery } from './helpers/render';
 import { longify } from './helpers/longify';
+import { paginationHide } from './helpers/hide-pagination';
+import { showWarningMessage, showReportFailture } from './helpers/messages';
 
 import sprite from '../images/sprite.svg';
 
@@ -19,7 +20,7 @@ const dotsIcon = `${sprite}#icon-dots`;
 
 const moviesApiService = new MoviesApiService();
 
-export function paginationSetup(page, totalItems) {
+async function paginationSetup(page, totalItems) {
   const paginationOptions = {
     page,
     totalItems,
@@ -80,11 +81,8 @@ export function paginationSetup(page, totalItems) {
   });
 }
 
-refs.form.addEventListener('submit', onSearch);
-
 async function onSearch(e) {
   e.preventDefault();
-  spinerPlay();
 
   const {
     elements: { query },
@@ -93,7 +91,7 @@ async function onSearch(e) {
   const searchQuery = query.value.trim().toLowerCase();
 
   if (!searchQuery) {
-    return Notiflix.Notify.warning(`Please enter name of the movie`);
+    return showWarningMessage();
   }
 
   moviesApiService.query = searchQuery;
@@ -101,22 +99,20 @@ async function onSearch(e) {
   moviesApiService.resetPage();
 
   try {
+    spinerPlay();
     const data = await moviesApiService.fetchMovieByWord();
 
     if (data.total_pages === 0) {
-      Report.failure(
-        'No Result &#128584',
-        'Search result not successful. Enter the correct movie name and ',
-        'Okay &#128527'
-      );
+      showReportFailture();
 
       clearGallery();
       refs.form.reset();
+      paginationHide();
       return addImageNoResult();
     }
 
     if (data.total_results <= 20) {
-      refs.pagination.classList.add('pagination-hidden');
+      paginationHide();
       return;
     }
 
@@ -151,3 +147,4 @@ async function pageRender() {
 }
 
 pageRender();
+refs.form.addEventListener('submit', onSearch);
