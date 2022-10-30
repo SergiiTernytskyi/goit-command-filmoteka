@@ -1,4 +1,5 @@
-import findTrailer from "./../scripts/trailer";
+import findTrailer from './../scripts/trailer';
+import { setupModalButtons } from '../scripts/filmmodal';
 const refs = {
   filmList: document.querySelector('.gallery'),
   modalBackdrop: document.querySelector('.backdrop-film-modal'),
@@ -7,7 +8,7 @@ const refs = {
   filmContainer: document.querySelector('.film-modal__container'),
 
   filmItem: document.querySelector('.card__item'),
-  openTrailerBtn: document.querySelector('.open-trailer-btn')
+  openTrailerBtn: document.querySelector('.open-trailer-btn'),
 };
 
 refs.filmList.addEventListener('click', onFilmOpen);
@@ -20,6 +21,8 @@ function onFilmOpen(event) {
   refs.filmContainer.innerHTML = '';
 
   let filmId = event.target.closest('.card__item').dataset.filmid;
+  const filmData = event.target.closest('.card__item').dataset.filminfo;
+  const filmInfo = JSON.parse(filmData);
 
   fetchOneFilm(filmId)
     .then(film => {
@@ -27,6 +30,9 @@ function onFilmOpen(event) {
     })
     .then(markupFilm => {
       return (refs.filmContainer.innerHTML = markupFilm);
+    })
+    .then(() => {
+      setupModalButtons(filmInfo);
     })
     .catch(error => console.log(error));
 
@@ -84,12 +90,12 @@ function fetchOneFilm(filmId) {
   });
 }
 
-
-
 function createMarkup(film) {
   const markupFilm = `<div class="film-modal__card" data-filmid="${film.id}">
       <div class="film-modal__img-thumb">
-        <img src="https://image.tmdb.org/t/p/w500${film.poster_path}" alt="${film.original_title}" class="film-modal__img" />
+        <img src="https://image.tmdb.org/t/p/w500${film.poster_path}" alt="${
+    film.original_title
+  }" class="film-modal__img" />
        <button type="button" class="open-trailer-btn" data-filmid="${film.id}">
 
 
@@ -133,7 +139,7 @@ function createMarkup(film) {
         <div class="film-modal__btn-container">
           <button
             type="button"
-            class="film-modal__watch-btn film-modal__btn library-btn active"
+            class="film-modal__watch-btn film-modal__btn library-btn"
           >
             ADD TO WATCHED
           </button>
@@ -152,6 +158,7 @@ const body = document.querySelector('body');
 refs.filmContainer.addEventListener('click', openTrailer);
 
 function openTrailer(e) {
+
   if (e.target.nodeName === "path" || e.target.nodeName === "IMG") {
     const key = e.target.parentElement.parentElement.dataset.filmid;
     console.dir(key)
@@ -179,5 +186,6 @@ function onEscCloseTrailer(e) {
     window.removeEventListener('click', closeBackdropTrailer)
     window.removeEventListener('keydown', onEscCloseTrailer)
     window.addEventListener('keydown', onEscPress)
+
   }
 }
