@@ -6,4 +6,5 @@ import './scripts/keyword/seachKeyword';
 import './scripts/trailer';
 import './js/fetchPopular';
 import './js/modalFilm';
+import './scripts/team-modal';
 import './scripts/btnToTop';
