@@ -11,7 +11,6 @@
 //     return response.json();
 //   });
 // }
-
 // fetchPopular()
 //   .then(films => renderPopularList(films.results))
 //   .then(markup => (popularGallery.innerHTML = markup))

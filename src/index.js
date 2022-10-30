@@ -1,4 +1,5 @@
 // import './library.js';
+import "./js/fetchPopular"
 import 'animate.css/animate.css';
 import './scripts/render-list';
 import './scripts/genres-list';
