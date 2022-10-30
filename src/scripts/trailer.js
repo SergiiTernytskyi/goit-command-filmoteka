@@ -47,6 +47,6 @@ export default async function findTrailer(movieId) {
   } catch (error) {
     console.log('error');
   } finally {
-    longify(spinerStop);
+    spinerStop();
   }
 }
