@@ -2,7 +2,7 @@ import listOfGenres from './genres-list';
 export default function renderPopularList(films) {
   const markup = films
     .map(film => {
-      return `<li class="card__item">
+      return `<li class="card__item" data-filmid="${film.id}">
         <div class="card__thumb">
             <img class="card__img" src="https://image.tmdb.org/t/p/w500${
               film.poster_path

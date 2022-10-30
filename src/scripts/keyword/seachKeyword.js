@@ -1,7 +1,7 @@
 import { MovieApi } from './MovieApi';
 import { clearGallery } from './clearGallery';
-import Notiflix from 'notiflix';
-import { Report } from 'notiflix/build/notiflix-report-aio';
+// import Notiflix from 'notiflix';
+// import { Report } from 'notiflix/build/notiflix-report-aio';
 import { refs } from '../refs';
 import renderPopularList from '../render-list';
 import { addImageNoResult } from './addImages';
