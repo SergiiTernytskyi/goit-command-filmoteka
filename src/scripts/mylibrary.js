@@ -50,20 +50,20 @@ export function loadAllFilms() {
 }
 export function loadWatchedFilms() {
   const watchedFilms = load('watched') || [];
-  refs.myLibraryFilmList.innerHTML = '';
-  refs.myLibraryFilmList.insertAdjacentHTML(
-    'beforeend',
-    renderList(watchedFilms)
-  );
+  refs.myLibraryFilmList.innerHTML = renderList(watchedFilms);
+  // refs.myLibraryFilmList.insertAdjacentHTML(
+  //   'beforeend',
+  //   renderList(watchedFilms)
+  // );
 }
 
 export function loadQueuedFilms() {
   const queuedFilms = load('queue') || [];
-  refs.myLibraryFilmList.innerHTML = '';
-  refs.myLibraryFilmList.insertAdjacentHTML(
-    'beforeend',
-    renderList(queuedFilms)
-  );
+  refs.myLibraryFilmList.innerHTML = renderList(queuedFilms);
+  // refs.myLibraryFilmList.insertAdjacentHTML(
+  //   'beforeend',
+  //   renderList(queuedFilms)
+  // );
 }
 
 export function setupLIbraryBtns() {

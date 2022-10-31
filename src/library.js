@@ -1,8 +1,8 @@
 import './js/modalFilm';
 import './scripts/team-modal';
 
-import { loadAllFilms, setupLIbraryBtns } from './scripts/mylibrary';
+import { loadWatchedFilms, setupLIbraryBtns } from './scripts/mylibrary';
 
-loadAllFilms();
+loadWatchedFilms();
 
 setupLIbraryBtns();
