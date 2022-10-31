@@ -7,11 +7,13 @@ const refs = {
   footer: document.querySelector('footer'),
   footerText: document.querySelectorAll('.footer-content'),
   galleryTitle: document.getElementsByClassName('card__title'),
+  pagination: document.querySelector('.tui-pagination'),
 };
 
 function darkThemeStyles() {
   refs.main.classList.add('main--dark');
   refs.footer.classList.add('footer--dark');
+  refs.pagination.classList.add('pagination--dark');
   refs.footerText.forEach(item => {
     item.classList.add('footer-content--dark');
   });
@@ -24,9 +26,13 @@ function darkThemeStyles() {
 function lightThemeStyles() {
   refs.main.classList.remove('main--dark');
   refs.footer.classList.remove('footer--dark');
+  refs.pagination.classList.remove('pagination--dark');
   refs.footerText.forEach(item => {
     item.classList.remove('footer-content--dark');
   });
+  for (let title of refs.galleryTitle) {
+    title.classList.remove('card__title--dark');
+  }
 }
 
 refs.darkBtn.addEventListener('click', onDarkBtnClick);

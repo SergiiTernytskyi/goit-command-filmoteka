@@ -10,9 +10,10 @@ import { hideImage } from './keyword/deleteImage';
 import { spinerPlay, spinerStop } from './helpers/spin-ner';
 import { renderGallery } from './helpers/render';
 import { longify } from './helpers/longify';
-import { paginationHide } from './helpers/hide-pagination';
+import { paginationHide, togglerHide } from './helpers/hide-pagination';
 import { onToTopBtn } from './btnToTop';
 import { showWarningMessage, showReportFailture } from './helpers/messages';
+import { load, save } from './localestorageservices';
 
 import sprite from '../images/sprite.svg';
 
@@ -111,6 +112,7 @@ async function onSearch(e) {
       clearGallery();
       refs.form.reset();
       paginationHide();
+      togglerHide();
       return addImageNoResult();
     }
 
@@ -137,11 +139,14 @@ async function onSearch(e) {
 async function pageRender() {
   spinerPlay();
   try {
+    moviesApiService.resetPage();
     const data = await moviesApiService.fetchTrendData();
     moviesApiService.totalResults = data.total_results;
+
     paginationSetup(moviesApiService.page, moviesApiService.totalResults);
 
     renderGallery(data.results);
+    onToTopBtn();
   } catch (error) {
     console.log(error);
   } finally {
@@ -149,5 +154,22 @@ async function pageRender() {
   }
 }
 
+function togglerHandler() {
+  if (refs.toggler.checked) {
+    moviesApiService.popularity = 'week';
+    refs.dayBtn.classList.remove('toggle-day--active');
+    refs.weekBtn.classList.add('toggle-week--active');
+
+    return pageRender();
+  } else {
+    moviesApiService.popularity = 'day';
+    refs.dayBtn.classList.add('toggle-day--active');
+    refs.weekBtn.classList.remove('toggle-week--active');
+
+    return pageRender();
+  }
+}
+
 pageRender();
 refs.form.addEventListener('submit', onSearch);
+refs.toggler.addEventListener('change', togglerHandler);

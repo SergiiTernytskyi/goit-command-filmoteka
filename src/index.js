@@ -12,3 +12,4 @@ import './scripts/team-modal';
 import './scripts/switchTheme';
 // import './js/spinner';
 import './scripts/pagination';
+import './scripts/filter';

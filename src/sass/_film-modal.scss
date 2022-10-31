@@ -119,6 +119,8 @@
   background-color: transparent;
   border: none;
   outline: transparent;
+  opacity: 0;
+  transition: opacity 250ms var(--timing-function);
 }
 
 // .icon-play {
@@ -133,10 +135,18 @@
   transition: fill 250ms var(--timing-function);
 }
 
-.film-modal__img-thumb:hover .icon-path,
-.film-modal__img-thumb:focus .icon-path {
+.film-modal__img-thumb:hover .open-trailer-btn {
+  opacity: 1;
+}
+
+.icon-path {
   fill: rgb(213, 9, 9);
 }
+
+// .film-modal__img-thumb:hover .icon-path,
+// .film-modal__img-thumb:focus .icon-path {
+//   fill: rgb(213, 9, 9);
+// }
 
 .film-modal__title {
   @include font(500, 20px, 1.15);
