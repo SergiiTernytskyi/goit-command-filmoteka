@@ -9,7 +9,7 @@ export const refs = {
   form: document.querySelector('.header-form'),
   list: document.querySelector('.gallery'),
   spinNer: document.querySelector('.js-spinner'),
-  loadSpin: document.querySelector('[js-data]'),
+  loadSpin: document.querySelector('.spin-bkdr'),
 
   pagination: document.querySelector('.tui-pagination'),
   toTopBtn: document.querySelector('.btn-to-top'),
@@ -22,5 +22,5 @@ export const refs = {
   closeModalBtn: document.querySelector('.modal-team__close-btn'),
   teamModal: document.querySelector('[data-team-modal]'),
 
-  filterForm: document.querySelector('.filter_form')
+  filterForm: document.querySelector('.filter_form'),
 };
