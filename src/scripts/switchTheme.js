@@ -27,6 +27,9 @@ function lightThemeStyles() {
   refs.footerText.forEach(item => {
     item.classList.remove('footer-content--dark');
   });
+  for (let title of refs.galleryTitle) {
+    title.classList.remove('card__title--dark');
+  }
 }
 
 refs.darkBtn.addEventListener('click', onDarkBtnClick);
