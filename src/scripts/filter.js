@@ -29,12 +29,12 @@ async function openListSort(e) {
     console.log('genre, year', res)
   }
   if (genre !== "start" && year === "start" && sort === "start") {
-    const res = initFilter(genreUrl)
-    console.log('genre', res)
+    const response = await initFilter(genreUrl)
+    const data = await response.data
+    console.log(data)
   }
   if (genre === "start" && year !== "start" && sort === "start") {
-    const res = initFilter(yearUrl)
-    console.log('year', res)
+    console.log(initFilter(yearUrl))
   }
   if (genre !== "start" && year !== "start" && sort !== "start") {
     const res = initFilter(genreUrl, yearUrl, sortUrl)
@@ -49,6 +49,6 @@ async function openListSort(e) {
     console.log('sort', res)
   }
 }
-function initFilter(genreUrl, yearUrl, sortUrl) {
-  return axios.get(`${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US${yearUrl}${genreUrl}${sortUrl}&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`)
+async function initFilter(genreUrl, yearUrl, sortUrl) {
+  return await axios.get(`${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US${yearUrl}${genreUrl}${sortUrl}&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`)
 }
