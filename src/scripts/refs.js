@@ -9,7 +9,7 @@ export const refs = {
   form: document.querySelector('.header-form'),
   list: document.querySelector('.gallery'),
   spinNer: document.querySelector('.js-spinner'),
-  loadSpin: document.querySelector('.spin-bkdr'),
+  loadSpin: document.querySelector('.spin-backdrop'),
 
   pagination: document.querySelector('.tui-pagination'),
   toTopBtn: document.querySelector('.btn-to-top'),
