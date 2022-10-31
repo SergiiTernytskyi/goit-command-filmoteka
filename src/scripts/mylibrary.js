@@ -54,12 +54,9 @@ export function loadAllFilms() {
 }
 export function loadWatchedFilms() {
   const watchedFilms = load('watched') || [];
-  if (watchedFilms > 0) {
-    refs.myLibraryFilmList.innerHTML = '';
-    refs.myLibraryFilmList.insertAdjacentHTML(
-      'beforeend',
-      renderList(watchedFilms)
-    );
+  console.log(watchedFilms);
+  if (watchedFilms.length !== 0) {
+    refs.myLibraryFilmList.innerHTML = renderList(watchedFilms);
   } else {
     refs.myLibraryFilmList.innerHTML =
       '`<span class="empty-library-title">Watched movies list is empty  <span>😟</span></span><img src="https://funart.pro/uploads/posts/2021-07/1626947950_4-funart-pro-p-kot-shrek-glaza-zhivotnie-krasivo-foto-4.jpg" alt="Cat with big eyes" id="124" class="show">`';
@@ -68,12 +65,8 @@ export function loadWatchedFilms() {
 
 export function loadQueuedFilms() {
   const queuedFilms = load('queue') || [];
-  if (queuedFilms > 0) {
-    refs.myLibraryFilmList.innerHTML = '';
-    refs.myLibraryFilmList.insertAdjacentHTML(
-      'beforeend',
-      renderList(queuedFilms)
-    );
+  if (queuedFilms.length !== 0) {
+    refs.myLibraryFilmList.innerHTML = renderList(queuedFilms);
   } else {
     refs.myLibraryFilmList.innerHTML =
       '`<span class="empty-library-title">Movies queue is empty  <span>😟</span></span><img src="https://funart.pro/uploads/posts/2021-07/1626947950_4-funart-pro-p-kot-shrek-glaza-zhivotnie-krasivo-foto-4.jpg" alt="Cat with big eyes" id="124" class="show">`';

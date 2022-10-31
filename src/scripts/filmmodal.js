@@ -39,22 +39,30 @@ export function setupModalButtons(film) {
   refsBtn.watchedBtn.addEventListener('click', () => {
     toggleWatched(film);
     updateWatchedBtnText(film.id);
-    if (!refs.myLibraryFilmList) {
+
+    if (
+      !refs.myLibraryFilmList ||
+      !refs.watchedLibraryBtn.classList.value.includes(
+        'library-btn__btn--active'
+      )
+    ) {
       return;
     }
+
     loadWatchedFilms();
   });
   refsBtn.queueBtn.addEventListener('click', () => {
     toggleQueue(film);
     updateQueuedBtnText(film.id);
 
-    if (!refs.myLibraryFilmList) {
+    if (
+      !refs.myLibraryFilmList ||
+      !refs.queueLibraryBtn.classList.value.includes('library-btn__btn--active')
+    ) {
       return;
     }
     loadQueuedFilms();
   });
   updateWatchedBtnText(film.id);
   updateQueuedBtnText(film.id);
-
-  // console.log(refs.myLibraryFilmList);
 }
