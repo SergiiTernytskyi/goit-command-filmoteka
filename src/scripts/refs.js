@@ -13,6 +13,9 @@ export const refs = {
 
   pagination: document.querySelector('.tui-pagination'),
   toTopBtn: document.querySelector('.btn-to-top'),
+  toggler: document.querySelector('#switch'),
+  dayBtn: document.querySelector('#text-day'),
+  weekBtn: document.querySelector('#text-week'),
 
   openModalLink: document.querySelector('.footer-content__link'),
   closeModalBtn: document.querySelector('.modal-team__close-btn'),

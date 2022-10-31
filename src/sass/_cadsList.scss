@@ -118,3 +118,90 @@
 .btn-to-top__icon {
   fill: currentColor;
 }
+
+.toggler {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  margin-bottom: 20px;
+}
+
+.toggler input {
+  position: fixed;
+  transform: scale(0);
+}
+
+.toggler__title {
+  margin: 0 0 10px;
+
+  @include font(500, 16px, 1.33);
+  color: var(--main-dark-color);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggler__box {
+  position: relative;
+
+  display: inline-block;
+  margin: 0 10px;
+  height: 26px;
+  width: 50px;
+
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  border-radius: 50px;
+  transition: background 200ms ease;
+  cursor: pointer;
+}
+
+.toggler__box::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 2px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+
+  background: var(--accent-color);
+  border-radius: 50%;
+  transition: transform 200ms ease;
+}
+
+.text {
+  display: inline-block;
+  width: 40px;
+  font-size: 16px;
+  text-align: center;
+  color: #a19f9f;
+
+  border-radius: 5px;
+}
+
+input:checked + .toggler__box {
+  background: transparent;
+  border: 2px solid var(--accent-color);
+}
+
+input:checked + .toggler__box::before {
+  transform: translateX(22px);
+  background: var(--accent-color);
+}
+
+.toggle-day--active {
+  color: var(--accent-color);
+}
+
+.toggle-week--active {
+  color: var(--accent-color);
+}

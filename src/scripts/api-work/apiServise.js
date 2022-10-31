@@ -8,6 +8,7 @@ export class MoviesApiService {
   #id = '';
   #totalResults = 0;
   #searchType = 'trending';
+  #popularity = 'day';
 
   //   constructor() {
   //     this.page = 1;
@@ -18,7 +19,9 @@ export class MoviesApiService {
   async fetchTrendData() {
     try {
       const { data } = await axios.get(
-        `${TRENDING_URL}?api_key=${API_KEY}&page=${this.#page}`
+        `${TRENDING_URL}${this.#popularity}?api_key=${API_KEY}&page=${
+          this.#page
+        }`
       );
       return data;
     } catch (error) {
@@ -101,6 +104,14 @@ export class MoviesApiService {
 
   set movieId(newId) {
     this.#id = newId;
+  }
+
+  get popularity() {
+    return this.#popularity;
+  }
+
+  set popularity(newPop) {
+    this.#popularity = newPop;
   }
 
   resetPage() {

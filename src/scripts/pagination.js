@@ -13,6 +13,7 @@ import { longify } from './helpers/longify';
 import { paginationHide } from './helpers/hide-pagination';
 import { onToTopBtn } from './btnToTop';
 import { showWarningMessage, showReportFailture } from './helpers/messages';
+import { load, save } from './localestorageservices';
 
 import sprite from '../images/sprite.svg';
 
@@ -150,5 +151,21 @@ async function pageRender() {
   }
 }
 
+function togglerHandler() {
+  if (refs.toggler.checked) {
+    moviesApiService.popularity = 'week';
+    refs.dayBtn.classList.remove('toggle-day--active');
+    refs.weekBtn.classList.add('toggle-week--active');
+
+    return pageRender();
+  } else {
+    moviesApiService.popularity = 'day';
+    refs.dayBtn.classList.add('toggle-day--active');
+    refs.weekBtn.classList.remove('toggle-week--active');
+    return pageRender();
+  }
+}
+
 pageRender();
 refs.form.addEventListener('submit', onSearch);
+refs.toggler.addEventListener('change', togglerHandler);
