@@ -1,16 +1,16 @@
-const toTopBtn = document.querySelector('.btn-to-top');
+import { refs } from './refs';
 
 window.addEventListener('scroll', onScroll);
-if (toTopBtn) toTopBtn.addEventListener('click', onToTopBtn);
+if (refs.toTopBtn) refs.toTopBtn.addEventListener('click', onToTopBtn);
 
 function onScroll() {
   const scrolled = window.pageYOffset;
   const coords = document.documentElement.clientHeight;
   if (scrolled > coords) {
-    toTopBtn.classList.add('btn-to-top--visible');
+    refs.toTopBtn.classList.add('btn-to-top--visible');
   }
-  if (scrolled <= coords && toTopBtn) {
-    toTopBtn.classList.remove('btn-to-top--visible');
+  if (scrolled <= coords && refs.toTopBtn) {
+    refs.toTopBtn.classList.remove('btn-to-top--visible');
   }
 }
 export function onToTopBtn() {

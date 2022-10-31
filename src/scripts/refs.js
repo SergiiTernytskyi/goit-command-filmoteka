@@ -12,6 +12,7 @@ export const refs = {
   loadSpin: document.querySelector('[js-data]'),
 
   pagination: document.querySelector('.tui-pagination'),
+  toTopBtn: document.querySelector('.btn-to-top'),
 
   openModalLink: document.querySelector('.footer-content__link'),
   closeModalBtn: document.querySelector('.modal-team__close-btn'),

@@ -142,6 +142,7 @@ async function pageRender() {
     paginationSetup(moviesApiService.page, moviesApiService.totalResults);
 
     renderGallery(data.results);
+    onToTopBtn();
   } catch (error) {
     console.log(error);
   } finally {
