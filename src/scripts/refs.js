@@ -16,5 +16,4 @@ export const refs = {
   openModalLink: document.querySelector('.footer-content__link'),
   closeModalBtn: document.querySelector('.modal-team__close-btn'),
   teamModal: document.querySelector('[data-team-modal]'),
-  modalTeamBackdrop: document.querySelector('.backdrop'),
 };

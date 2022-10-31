@@ -1,20 +1,19 @@
 import { refs } from './refs';
 
+refs.openModalLink.addEventListener('click', onOpenTeamModal);
+refs.closeModalBtn.addEventListener('click', onCloseTeamModal);
+refs.teamModal.addEventListener('click', onBackdropClickClose);
 
-  refs.openModalLink.addEventListener('click', toggleTeamModal);
-  refs.closeModalBtn.addEventListener('click', toggleTeamModal);
-  refs.modalTeamBackdrop.addEventListener('click', onBackdropClickClose);
+function onOpenTeamModal() {
+  refs.teamModal.classList.remove('is-hidden');
+  refs.body.classList.add('no-scroll');
   window.addEventListener('keydown', onEscPress);
+}
 
-function toggleTeamModal() {
-    refs.teamModal.classList.toggle('is-hidden');
-    refs.body.classList.toggle('no-scroll');
-  }
-
-function onCloseTeamModal(event) {
+function onCloseTeamModal() {
+  refs.teamModal.classList.add('is-hidden');
+  refs.body.classList.remove('no-scroll');
   window.removeEventListener('keydown', onEscPress);
-  refs.modalTeamBackdrop.classList.add('is-hidden');
-  document.body.style.overflow = 'scroll';
 }
 
 function onBackdropClickClose(event) {
