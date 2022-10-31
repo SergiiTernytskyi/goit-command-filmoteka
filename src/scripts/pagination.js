@@ -81,6 +81,18 @@ async function paginationSetup(page, totalItems) {
       } finally {
         longify(spinerStop);
       }
+    } else if (moviesApiService.searchType === 'filter') {
+      spinerPlay();
+      try {
+        moviesApiService.page = event.page;
+        const data = await moviesApiService.fetchFilterMovie();
+        renderGallery(data.results);
+        longify(onToTopBtn);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        longify(spinerStop);
+      }
     }
   });
 }
@@ -136,6 +148,154 @@ async function onSearch(e) {
   }
 }
 
+async function openListSort(e) {
+  const genre = refs.filterForm[0].value;
+  const year = refs.filterForm[1].value;
+  const sort = refs.filterForm[2].value;
+  const genreUrl = `&with_genres=${genre}`;
+  const yearUrl = `&primary_release_year=${year}`;
+  const sortUrl = `&sort_by=${sort}`;
+
+  moviesApiService.searchType = 'filter';
+  moviesApiService.resetPage();
+
+  try {
+    spinerPlay();
+    if (genre === 'start') {
+      moviesApiService.genre = '';
+    }
+    if (year === 'start') {
+      moviesApiService.genre = '';
+    }
+    if (sort === 'start') {
+      moviesApiService.sort = '';
+    }
+
+    if (genre !== 'start' && year === 'start' && sort !== 'start') {
+      moviesApiService.genre = genreUrl;
+      moviesApiService.sort = sortUrl;
+
+      const data = await moviesApiService.fetchFilterMovie();
+
+      if (data.total_results > 10000) {
+        moviesApiService.totalResults = 10000;
+      } else {
+        moviesApiService.totalResults = data.total_results;
+      }
+
+      moviesApiService.resetPage();
+
+      renderGallery(data.results);
+      paginationSetup(moviesApiService.page, moviesApiService.totalResults);
+      return;
+    }
+    if (genre !== 'start' && year !== 'start' && sort === 'start') {
+      moviesApiService.genre = genreUrl;
+      moviesApiService.year = yearUrl;
+
+      const data = await moviesApiService.fetchFilterMovie();
+
+      if (data.total_results > 10000) {
+        moviesApiService.totalResults = 10000;
+      } else {
+        moviesApiService.totalResults = data.total_results;
+      }
+      moviesApiService.resetPage();
+
+      renderGallery(data.results);
+      paginationSetup(moviesApiService.page, moviesApiService.totalResults);
+      return;
+    }
+    if (genre !== 'start' && year === 'start' && sort === 'start') {
+      moviesApiService.genre = genreUrl;
+
+      const data = await moviesApiService.fetchFilterMovie();
+
+      if (data.total_results > 10000) {
+        moviesApiService.totalResults = 10000;
+      } else {
+        moviesApiService.totalResults = data.total_results;
+      }
+      moviesApiService.resetPage();
+
+      renderGallery(data.results);
+      paginationSetup(moviesApiService.page, moviesApiService.totalResults);
+      return;
+    }
+    if (genre === 'start' && year !== 'start' && sort === 'start') {
+      moviesApiService.year = yearUrl;
+
+      const data = await moviesApiService.fetchFilterMovie();
+
+      if (data.total_results > 10000) {
+        moviesApiService.totalResults = 10000;
+      } else {
+        moviesApiService.totalResults = data.total_results;
+      }
+      moviesApiService.resetPage();
+
+      renderGallery(data.results);
+      paginationSetup(moviesApiService.page, moviesApiService.totalResults);
+      return;
+    }
+    if (genre !== 'start' && year !== 'start' && sort !== 'start') {
+      moviesApiService.genre = genreUrl;
+      moviesApiService.year = yearUrl;
+      moviesApiService.sort = sortUrl;
+
+      const data = await moviesApiService.fetchFilterMovie();
+
+      if (data.total_results > 10000) {
+        moviesApiService.totalResults = 10000;
+      } else {
+        moviesApiService.totalResults = data.total_results;
+      }
+      moviesApiService.resetPage();
+
+      renderGallery(data.results);
+      paginationSetup(moviesApiService.page, moviesApiService.totalResults);
+      return;
+    }
+    if (genre === 'start' && year !== 'start' && sort !== 'start') {
+      moviesApiService.year = yearUrl;
+      moviesApiService.sort = sortUrl;
+
+      const data = await moviesApiService.fetchFilterMovie();
+
+      if (data.total_results > 10000) {
+        moviesApiService.totalResults = 10000;
+      } else {
+        moviesApiService.totalResults = data.total_results;
+      }
+      moviesApiService.resetPage();
+
+      renderGallery(data.results);
+      paginationSetup(moviesApiService.page, moviesApiService.totalResults);
+      return;
+    }
+    if (genre === 'start' && year === 'start' && sort !== 'start') {
+      moviesApiService.sort = sortUrl;
+
+      const data = await moviesApiService.fetchFilterMovie(sortUrl);
+
+      if (data.total_results > 10000) {
+        moviesApiService.totalResults = 10000;
+      } else {
+        moviesApiService.totalResults = data.total_results;
+      }
+      moviesApiService.resetPage();
+
+      renderGallery(data.results);
+      paginationSetup(moviesApiService.page, moviesApiService.totalResults);
+      return;
+    }
+  } catch (error) {
+    console.log(error);
+  } finally {
+    longify(spinerStop);
+  }
+}
+
 async function pageRender() {
   spinerPlay();
   try {
@@ -173,3 +333,4 @@ function togglerHandler() {
 pageRender();
 refs.form.addEventListener('submit', onSearch);
 refs.toggler.addEventListener('change', togglerHandler);
+refs.filterForm.addEventListener('input', openListSort);
