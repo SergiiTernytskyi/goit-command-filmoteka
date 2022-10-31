@@ -10,7 +10,7 @@ import { hideImage } from './keyword/deleteImage';
 import { spinerPlay, spinerStop } from './helpers/spin-ner';
 import { renderGallery } from './helpers/render';
 import { longify } from './helpers/longify';
-import { paginationHide } from './helpers/hide-pagination';
+import { paginationHide, togglerHide } from './helpers/hide-pagination';
 import { onToTopBtn } from './btnToTop';
 import { showWarningMessage, showReportFailture } from './helpers/messages';
 import { load, save } from './localestorageservices';
@@ -112,6 +112,7 @@ async function onSearch(e) {
       clearGallery();
       refs.form.reset();
       paginationHide();
+      togglerHide();
       return addImageNoResult();
     }
 

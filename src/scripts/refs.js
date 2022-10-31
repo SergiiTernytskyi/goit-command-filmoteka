@@ -13,6 +13,7 @@ export const refs = {
 
   pagination: document.querySelector('.tui-pagination'),
   toTopBtn: document.querySelector('.btn-to-top'),
+  togglerDiv: document.querySelector('.toggler'),
   toggler: document.querySelector('#switch'),
   dayBtn: document.querySelector('#text-day'),
   weekBtn: document.querySelector('#text-week'),
