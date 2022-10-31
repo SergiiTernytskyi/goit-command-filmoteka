@@ -29,6 +29,15 @@ section {
     padding: 40px 0 60px 0;
   }
 }
+
+.section-library {
+  padding: 20px 0;
+
+  @include tablet {
+    padding: 60px 0 60px 0;
+  }
+}
+
 // ------------
 .main--dark {
   background-color: rgb(57, 55, 55);
