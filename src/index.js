@@ -10,3 +10,4 @@ import './js/modalFilm';
 import './scripts/team-modal';
 // import './js/spinner';
 import './scripts/pagination';
+import './scripts/filter'
