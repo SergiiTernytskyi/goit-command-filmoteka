@@ -4,6 +4,7 @@
   font-size: 24px;
   line-height: 23px;
   color: var(--main-dark-color);
+  text-align: center;
 }
 
 .modal-team {
@@ -69,6 +70,7 @@
 .modal-team-list {
   display: flex;
   flex-wrap: wrap;
+
   gap: 20px;
 
   @include desktop {
@@ -86,6 +88,25 @@
 
   @include tablet {
     width: calc((100% - 40px) / 3);
+  }
+
+    //  @include desktop {
+    //    width: calc((100% - 40px) / 6);
+    //  }
+  
+}
+
+.modal-team-list__item:nth-child(-n+5) {
+  @include desktop {
+      width: calc((100% - 40px) / 5.3
+
+      );
+    }
+}
+
+.modal-team-list__item:nth-child(n+6) {
+  @include desktop {
+    width: calc((100% - 40px) / 5);
   }
 }
 
@@ -127,7 +148,6 @@
 
   @include desktop {
     padding: 10px 20px;
-    min-height: 100px;
   }
 }
 
@@ -160,6 +180,11 @@
     background-color: var(--accent-color);
     color: var(--main-light-color);
   }
+
+  @include desktop {
+    width: 25px;
+    height: 25px;
+  }
 }
 
 .team-thumb__link-icon {
@@ -176,10 +201,6 @@
   @include tablet {
     font-size: 14px;
   }
-
-  @include desktop {
-    font-size: 18px;
-  }
 }
 
 .team-content__position {
@@ -190,9 +211,5 @@
 
   @include tablet {
     font-size: 14px;
-  }
-
-  @include desktop {
-    font-size: 18px;
   }
 }
