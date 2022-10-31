@@ -90,23 +90,8 @@
     width: calc((100% - 40px) / 3);
   }
 
-    //  @include desktop {
-    //    width: calc((100% - 40px) / 6);
-    //  }
-  
-}
-
-.modal-team-list__item:nth-child(-n+5) {
   @include desktop {
-      width: calc((100% - 40px) / 5.3
-
-      );
-    }
-}
-
-.modal-team-list__item:nth-child(n+6) {
-  @include desktop {
-    width: calc((100% - 40px) / 5);
+    width: calc((100% - 40px) / 5.3);
   }
 }
 
