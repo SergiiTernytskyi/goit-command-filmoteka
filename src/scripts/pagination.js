@@ -138,8 +138,10 @@ async function onSearch(e) {
 async function pageRender() {
   spinerPlay();
   try {
+    moviesApiService.resetPage();
     const data = await moviesApiService.fetchTrendData();
     moviesApiService.totalResults = data.total_results;
+
     paginationSetup(moviesApiService.page, moviesApiService.totalResults);
 
     renderGallery(data.results);
@@ -162,6 +164,7 @@ function togglerHandler() {
     moviesApiService.popularity = 'day';
     refs.dayBtn.classList.add('toggle-day--active');
     refs.weekBtn.classList.remove('toggle-week--active');
+
     return pageRender();
   }
 }
