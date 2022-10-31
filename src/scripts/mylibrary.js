@@ -45,25 +45,39 @@ export function loadAllFilms() {
   const watchedFilms = load('watched') || [];
   const queuedFilms = load('queue') || [];
   const films = [...watchedFilms, ...queuedFilms];
-
-  refs.myLibraryFilmList.insertAdjacentHTML('beforeend', renderList(films));
+  if (films.length > 0) {
+    refs.myLibraryFilmList.insertAdjacentHTML('beforeend', renderList(films));
+  } else {
+    refs.myLibraryFilmList.innerHTML =
+      '`<span class="empty-library-title">No movies added here yet  <span>😟</span></span><img src="https://funart.pro/uploads/posts/2021-07/1626947950_4-funart-pro-p-kot-shrek-glaza-zhivotnie-krasivo-foto-4.jpg" alt="Cat with big eyes" id="124" class="show">`';
+  }
 }
 export function loadWatchedFilms() {
   const watchedFilms = load('watched') || [];
-  refs.myLibraryFilmList.innerHTML = renderList(watchedFilms);
-  // refs.myLibraryFilmList.insertAdjacentHTML(
-  //   'beforeend',
-  //   renderList(watchedFilms)
-  // );
+  if (watchedFilms > 0) {
+    refs.myLibraryFilmList.innerHTML = '';
+    refs.myLibraryFilmList.insertAdjacentHTML(
+      'beforeend',
+      renderList(watchedFilms)
+    );
+  } else {
+    refs.myLibraryFilmList.innerHTML =
+      '`<span class="empty-library-title">Watched movies list is empty  <span>😟</span></span><img src="https://funart.pro/uploads/posts/2021-07/1626947950_4-funart-pro-p-kot-shrek-glaza-zhivotnie-krasivo-foto-4.jpg" alt="Cat with big eyes" id="124" class="show">`';
+  }
 }
 
 export function loadQueuedFilms() {
   const queuedFilms = load('queue') || [];
-  refs.myLibraryFilmList.innerHTML = renderList(queuedFilms);
-  // refs.myLibraryFilmList.insertAdjacentHTML(
-  //   'beforeend',
-  //   renderList(queuedFilms)
-  // );
+  if (queuedFilms > 0) {
+    refs.myLibraryFilmList.innerHTML = '';
+    refs.myLibraryFilmList.insertAdjacentHTML(
+      'beforeend',
+      renderList(queuedFilms)
+    );
+  } else {
+    refs.myLibraryFilmList.innerHTML =
+      '`<span class="empty-library-title">Movies queue is empty  <span>😟</span></span><img src="https://funart.pro/uploads/posts/2021-07/1626947950_4-funart-pro-p-kot-shrek-glaza-zhivotnie-krasivo-foto-4.jpg" alt="Cat with big eyes" id="124" class="show">`';
+  }
 }
 
 export function setupLIbraryBtns() {
