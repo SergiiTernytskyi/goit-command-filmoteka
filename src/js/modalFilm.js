@@ -22,8 +22,9 @@ function onFilmOpen(event) {
 
   let filmId = event.target.closest('.card__item').dataset.filmid;
   const filmData = event.target.closest('.card__item').dataset.filminfo;
-  const filmInfo = JSON.parse(filmData);
-  console.log(filmData);
+  const decodedFilm = decodeURIComponent(filmData);
+
+  const filmInfo = JSON.parse(decodedFilm);
 
   fetchOneFilm(filmId)
     .then(film => {

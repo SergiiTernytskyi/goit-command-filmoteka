@@ -4,8 +4,11 @@ export function renderList(films) {
   const markup = films
     .map(film => {
       const movieDate = new Date(film.release_date).getFullYear();
+
       const filmData = JSON.stringify(film);
-      return `<li class="card__item" data-filminfo='${filmData}' data-filmid="${
+
+      const encodedFilm = encodeURIComponent(filmData);
+      return `<li class="card__item" data-filminfo="${encodedFilm}" data-filmid="${
         film.id
       }">
         <div class="card__thumb">

@@ -4,7 +4,7 @@ import { renderList } from './render-list';
 
 function toggleItems(film, storageKey) {
   let storedItems = load(storageKey);
-  // watchedItems = watchedItems ? watchedItems : [];
+
   if (Array.isArray(storedItems)) {
     const existIndex = storedItems.findIndex(item => item.id === film.id);
     if (existIndex > -1) {
@@ -41,14 +41,14 @@ export function isFilmQueued(filmId) {
   return findFilmIndex(filmId, 'queue') > -1;
 }
 
-export async function loadAllFilms() {
+export function loadAllFilms() {
   const watchedFilms = load('watched') || [];
   const queuedFilms = load('queue') || [];
   const films = [...watchedFilms, ...queuedFilms];
 
   refs.myLibraryFilmList.insertAdjacentHTML('beforeend', renderList(films));
 }
-export async function loadWatchedFilms() {
+export function loadWatchedFilms() {
   const watchedFilms = load('watched') || [];
   refs.myLibraryFilmList.innerHTML = '';
   refs.myLibraryFilmList.insertAdjacentHTML(
@@ -57,7 +57,7 @@ export async function loadWatchedFilms() {
   );
 }
 
-export async function loadQueuedFilms() {
+export function loadQueuedFilms() {
   const queuedFilms = load('queue') || [];
   refs.myLibraryFilmList.innerHTML = '';
   refs.myLibraryFilmList.insertAdjacentHTML(
@@ -70,12 +70,17 @@ export function setupLIbraryBtns() {
   function onQueueBtnClick() {
     refs.queueLibraryBtn.classList.add('active');
     refs.watchedLibraryBtn.classList.remove('active');
+    refs.queueLibraryBtn.classList.add('library-btn__btn--active');
+    refs.watchedLibraryBtn.classList.remove('library-btn__btn--active');
+
     loadQueuedFilms();
   }
 
   function onWatchedBtnClick() {
     refs.watchedLibraryBtn.classList.add('active');
     refs.queueLibraryBtn.classList.remove('active');
+    refs.queueLibraryBtn.classList.remove('library-btn__btn--active');
+    refs.watchedLibraryBtn.classList.add('library-btn__btn--active');
     loadWatchedFilms();
   }
 
