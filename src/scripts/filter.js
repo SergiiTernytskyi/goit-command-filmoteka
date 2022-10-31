@@ -21,12 +21,14 @@ async function openListSort(e) {
   const yearUrl = `&year=${year}`
   const sortUrl = `&sort_by=${sort}`
   if (genre !== "start" && year === "start" && sort !== "start") {
-    const res = initFilter(genreUrl, sortUrl)
-    console.log('genre, sort', res)
+    const response = await initFilter(genreUrl, sortUrl)
+    const data = await response.data
+    console.log(data)
   }
   if (genre !== "start" && year !== "start" && sort === "start") {
-    const res = initFilter(genreUrl, yearUrl)
-    console.log('genre, year', res)
+    const response = await initFilter(genreUrl, yearUrl)
+    const data = await response.data
+    console.log(data)
   }
   if (genre !== "start" && year === "start" && sort === "start") {
     const response = await initFilter(genreUrl)
@@ -34,21 +36,26 @@ async function openListSort(e) {
     console.log(data)
   }
   if (genre === "start" && year !== "start" && sort === "start") {
-    console.log(initFilter(yearUrl))
+    const response = await initFilter(yearUrl)
+    const data = await response.data
+    console.log(data)
   }
   if (genre !== "start" && year !== "start" && sort !== "start") {
-    const res = initFilter(genreUrl, yearUrl, sortUrl)
-    console.log('all on', res)
+    const response = await initFilter(genreUrl, yearUrl, sortUrl)
+    const data = await response.data
+    console.log(data)
   }
   if (genre === "start" && year !== "start" && sort !== "start") {
-    const res = initFilter(yearUrl, sortUrl)
-    console.log('year, sort', res)
+    const response = await initFilter(yearUrl, sortUrl)
+    const data = await response.data
+    console.log(data)
   }
   if (genre === "start" && year === "start" && sort !== "start") {
-    const res = initFilter(sortUrl)
-    console.log('sort', res)
+    const response = await initFilter(sortUrl)
+    const data = await response.data
+    console.log(data)
   }
+  function initFilter(genreUrl, yearUrl, sortUrl) {
+  return axios.get(`${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US${yearUrl}${genreUrl}${sortUrl}&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`)
 }
-async function initFilter(genreUrl, yearUrl, sortUrl) {
-  return await axios.get(`${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US${yearUrl}${genreUrl}${sortUrl}&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`)
 }
