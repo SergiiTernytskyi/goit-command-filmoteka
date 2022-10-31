@@ -53,11 +53,7 @@ export default async function openListSort(e) {
     const data = await response.data
     renderGallery(data.results);
     console.log(data)
-<<<<<<< Updated upstream
     return data
-=======
-    return
->>>>>>> Stashed changes
   }
   if (genre === "start" && year !== "start" && sort === "start") {
     moviesApiService.resetPage();
