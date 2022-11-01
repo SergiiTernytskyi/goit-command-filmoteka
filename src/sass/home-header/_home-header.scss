@@ -32,25 +32,49 @@
   }
 
   @include desktop {
-    background-repeat: repeat;
+  
     background-image: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
-      url(../images/background/desktop.jpg);
+      url(../images/background/homedesktop.jpg);
+
 
     @include retina {
-      background-repeat: repeat;
+     
       background-image: linear-gradient(
           to right,
           rgba(0, 0, 0, 0.56),
           rgba(0, 0, 0, 0.56)
         ),
-        url(../images/background/desktop2x.jpg);
+        url(../images/background/homedesktop2x.jpg);
     }
   }
+
+     @include largedesktop {
+       background-repeat: repeat-x;
+       background-size: contain;
+       background-repeat: repeat;
+      //  background-image: linear-gradient(to right,
+      //      rgba(0, 0, 0, 0.56),
+      //      rgba(0, 0, 0, 0.56)),
+      //    url(../images/background/homedesktop.jpg);
+  
+  
+       @include retina {
+         background-repeat: repeat-x;
+         background-size: contain;
+         background-repeat: repeat;
+        //  background-image: linear-gradient(to right,
+        //      rgba(0, 0, 0, 0.56),
+        //      rgba(0, 0, 0, 0.56)),
+        //    url(../images/background/homedesktop2x.jpg);
+       }
+     }
 }
+
+
 
 .header__container {
   padding-top: 35px;

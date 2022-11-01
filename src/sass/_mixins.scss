@@ -22,6 +22,12 @@
   }
 }
 
+@mixin largedesktop {
+  @media screen and (min-width: 2000px) {
+    @content;
+  }
+}
+
 @mixin responsive {
   @media screen and (min-width: 321px) and (max-width: 767px) {
     @content;
