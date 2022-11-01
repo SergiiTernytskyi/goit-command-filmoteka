@@ -303,12 +303,7 @@
 .film-modal__watch-btn {
   color: var(--main-light-color);
   background-color: var(--accent-color);
-  // transition: color 250ms var(--timing-function);
-
-  // &:hover,
-  // &:focus {
-  //   color: var(--main-dark-color);
-  // }
+  transition: color 500ms linear;
 
   @include responsive {
     margin-right: 15px;
@@ -323,12 +318,4 @@
   color: var(--main-dark-color);
   background-color: transparent;
   border: 1px solid var(--main-dark-color);
-  // transition: color 250ms var(--timing-function),
-  //   border-color 250ms var(--timing-function);
-
-  // &:hover,
-  // &:focus {
-  //   border-color: var(--accent-color);
-  //   color: var(--accent-color);
-  // }
 }

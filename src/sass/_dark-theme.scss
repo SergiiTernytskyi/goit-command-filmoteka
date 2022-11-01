@@ -1,0 +1,94 @@
+body.light-theme {
+  background-color: #ffffff;
+}
+
+body.dark-theme {
+  background-color: rgb(57, 55, 55);
+
+  & .footer {
+    background-color: rgb(22, 20, 20);
+  }
+
+  & .footer-content {
+    color: #ffffff;
+  }
+
+  & .card__title {
+    color: #ffffff;
+  }
+
+  & .tui-pagination {
+    color: #ffffff;
+  }
+
+  & .icon-light {
+    opacity: 0.4;
+  }
+
+  & .icon-dark {
+    opacity: 1;
+  }
+
+  & .them-light-btn {
+    opacity: 0;
+  }
+
+  & .them-dark-btn {
+    opacity: 1;
+  }
+
+  & .modal-team__title {
+    color: var(--main-light-color);
+  }
+
+  & .modal-team {
+    background-color: rgb(99, 98, 98);
+  }
+
+  & .modal-team__close-btn {
+    color: var(--main-light-color);
+    &:hover,
+    &:focus {
+      color: var(--accent-color);
+    }
+  }
+
+  & .film-modal {
+    background-color: rgb(99, 98, 98);
+  }
+
+  & .film-modal__close-icon {
+    stroke: var(--main-light-color);
+    &:hover,
+    &:focus {
+      stroke: var(--accent-color);
+    }
+  }
+
+  & .film-modal__title {
+    color: var(--main-light-color);
+  }
+
+  & .film-modal__info-sub-title {
+    color: var(--main-dark-color);
+  }
+
+  & .film-modal__info-text {
+    color: var(--main-light-color);
+  }
+
+  & .film-modal__about-text {
+    color: var(--main-light-color);
+  }
+
+  & .film-modal__queue-btn {
+    color: var(--main-light-color);
+    border: 1px solid var(--main-light-color);
+    &:hover {
+      color: var(--accent-color);
+      transition: color 500ms;
+      border: 1px solid var(--accent-color);
+      transition: border 500ms;
+    }
+  }
+}
