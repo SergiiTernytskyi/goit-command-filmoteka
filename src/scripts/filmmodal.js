@@ -3,42 +3,65 @@ import {
   toggleQueue,
   isFilmWatched,
   isFilmQueued,
+  loadWatchedFilms,
+  loadQueuedFilms,
 } from './mylibrary';
 
-const refs = {
+import { refs } from './refs';
+
+const refsBtn = {
   watchedBtn: null,
   queueBtn: null,
 };
 
 function updateWatchedBtnText(filmId) {
   if (isFilmWatched(filmId)) {
-    refs.watchedBtn.textContent = 'Remove from watched';
-    refs.watchedBtn.classList.add('active');
+    refsBtn.watchedBtn.textContent = 'Remove from watched';
+    refsBtn.watchedBtn.classList.add('active');
   } else {
-    refs.watchedBtn.textContent = 'Add to watched';
-    refs.watchedBtn.classList.remove('active');
+    refsBtn.watchedBtn.textContent = 'Add to watched';
+    refsBtn.watchedBtn.classList.remove('active');
   }
 }
 function updateQueuedBtnText(filmId) {
   if (isFilmQueued(filmId)) {
-    refs.queueBtn.textContent = 'Remove from queued';
-    refs.queueBtn.classList.add('active');
+    refsBtn.queueBtn.textContent = 'Remove from queued';
+    refsBtn.queueBtn.classList.add('active');
   } else {
-    refs.queueBtn.textContent = 'Add to queued';
-    refs.queueBtn.classList.remove('active');
+    refsBtn.queueBtn.textContent = 'Add to queued';
+    refsBtn.queueBtn.classList.remove('active');
   }
 }
 
 export function setupModalButtons(film) {
-  refs.watchedBtn = document.querySelector('.film-modal__watch-btn');
-  refs.queueBtn = document.querySelector('.film-modal__queue-btn');
-  refs.watchedBtn.addEventListener('click', () => {
+  refsBtn.watchedBtn = document.querySelector('.film-modal__watch-btn');
+  refsBtn.queueBtn = document.querySelector('.film-modal__queue-btn');
+  refsBtn.watchedBtn.addEventListener('click', () => {
     toggleWatched(film);
     updateWatchedBtnText(film.id);
+
+    if (
+      !refs.myLibraryFilmList ||
+      !refs.watchedLibraryBtn.classList.value.includes(
+        'library-btn__btn--active'
+      )
+    ) {
+      return;
+    }
+
+    loadWatchedFilms();
   });
-  refs.queueBtn.addEventListener('click', () => {
+  refsBtn.queueBtn.addEventListener('click', () => {
     toggleQueue(film);
     updateQueuedBtnText(film.id);
+
+    if (
+      !refs.myLibraryFilmList ||
+      !refs.queueLibraryBtn.classList.value.includes('library-btn__btn--active')
+    ) {
+      return;
+    }
+    loadQueuedFilms();
   });
   updateWatchedBtnText(film.id);
   updateQueuedBtnText(film.id);

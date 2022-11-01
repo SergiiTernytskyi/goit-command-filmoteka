@@ -1,6 +1,12 @@
 import axios from 'axios';
 
-import { API_KEY, TRENDING_URL, SEARCH_URL, ID_URL } from './apiVars';
+import {
+  API_KEY,
+  TRENDING_URL,
+  SEARCH_URL,
+  ID_URL,
+  DISCOVER_URL,
+} from './apiVars';
 
 export class MoviesApiService {
   #query = '';
@@ -8,6 +14,10 @@ export class MoviesApiService {
   #id = '';
   #totalResults = 0;
   #searchType = 'trending';
+  #popularity = 'day';
+  #genre = '';
+  #year = '';
+  #sort = '';
 
   //   constructor() {
   //     this.page = 1;
@@ -18,7 +28,9 @@ export class MoviesApiService {
   async fetchTrendData() {
     try {
       const { data } = await axios.get(
-        `${TRENDING_URL}?api_key=${API_KEY}&page=${this.#page}`
+        `${TRENDING_URL}${this.#popularity}?api_key=${API_KEY}&page=${
+          this.#page
+        }`
       );
       return data;
     } catch (error) {
@@ -63,6 +75,24 @@ export class MoviesApiService {
       console.error('Smth wrong with api ID fetch' + error);
     }
   }
+
+  async fetchFilterMovie(genreUrl, yearUrl, sortUrl) {
+    try {
+      const { data } = await axios.get(
+        `${DISCOVER_URL}?api_key=${API_KEY}&language=en-US${this.#year}${
+          this.#genre
+        }${this.#sort}&include_adult=false&include_video=false&page=${
+          this.#page
+        }`
+      );
+      return data;
+    } catch (error) {
+      console.error('Smth wrong with api ID fetch' + error);
+    }
+
+    //
+  }
+
   get page() {
     return this.#page;
   }
@@ -101,6 +131,38 @@ export class MoviesApiService {
 
   set movieId(newId) {
     this.#id = newId;
+  }
+
+  get popularity() {
+    return this.#popularity;
+  }
+
+  set popularity(newPop) {
+    this.#popularity = newPop;
+  }
+
+  get genre() {
+    return this.#genre;
+  }
+
+  set genre(newGenre) {
+    this.#genre = newGenre;
+  }
+
+  get year() {
+    return this.#year;
+  }
+
+  set year(newYear) {
+    this.#year = newYear;
+  }
+
+  get sort() {
+    return this.#sort;
+  }
+
+  set sort(newSort) {
+    this.#sort = newSort;
   }
 
   resetPage() {

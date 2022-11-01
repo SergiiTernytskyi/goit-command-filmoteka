@@ -55,6 +55,19 @@
         url(../images/background/desktop-lib2x.jpg);
     }
   }
+
+    @include largedesktop {
+    background-repeat: repeat-x;
+      background-size: contain;
+      background-repeat: repeat;
+  
+      @include retina {
+        background-repeat: repeat-x;
+          background-size: contain;
+          background-repeat: repeat;
+      }
+    }
+
 }
 
 /* -------------------------------------------------------------------------- */

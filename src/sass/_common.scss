@@ -11,6 +11,20 @@ body {
   min-height: 100vh;
 
   font-family: 'Roboto', sans-serif;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 5px;
+    height: 300px;
+  }
 }
 
 main {
@@ -19,12 +33,30 @@ main {
   padding: 0;
 }
 section {
-  padding: 20px 0 0 0;
+  padding: 20px 0;
+}
+
+.pagination-section {
+  padding: 20px 0 40px 0;
 
   @include tablet {
-    padding: 60px 0 0 0;
+    padding: 40px 0 60px 0;
   }
 }
+
+.section-library {
+  padding: 20px 0;
+
+  @include tablet {
+    padding: 60px 0 60px 0;
+  }
+}
+
+// ------------
+.main--dark {
+  background-color: rgb(57, 55, 55);
+}
+// ------------
 
 button {
   cursor: pointer;
@@ -38,4 +70,9 @@ img {
 
 .no-scroll {
   overflow-y: hidden;
+}
+
+.empty-library-title {
+  margin: 0 auto;
+  font-size: 20px;
 }
