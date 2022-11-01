@@ -29,11 +29,66 @@ body.dark-theme {
     opacity: 1;
   }
 
-  .them-light-btn {
+  & .them-light-btn {
     opacity: 0;
   }
 
-  .them-dark-btn {
+  & .them-dark-btn {
     opacity: 1;
+  }
+
+  & .modal-team__title {
+    color: var(--main-light-color);
+  }
+
+  & .modal-team {
+    background-color: rgb(99, 98, 98);
+  }
+
+  & .modal-team__close-btn {
+    color: var(--main-light-color);
+    &:hover,
+    &:focus {
+      color: var(--accent-color);
+    }
+  }
+
+  & .film-modal {
+    background-color: rgb(99, 98, 98);
+  }
+
+  & .film-modal__close-icon {
+    stroke: var(--main-light-color);
+    &:hover,
+    &:focus {
+      stroke: var(--accent-color);
+    }
+  }
+
+  & .film-modal__title {
+    color: var(--main-light-color);
+  }
+
+  & .film-modal__info-sub-title {
+    color: var(--main-dark-color);
+  }
+
+  & .film-modal__info-text {
+    color: var(--main-light-color);
+  }
+
+  & .film-modal__about-text {
+    color: var(--main-light-color);
+  }
+
+  & .film-modal__queue-btn {
+    color: var(--main-light-color);
+    border: 1px solid var(--main-light-color);
+    &:hover {
+      color: var(--accent-color);
+      transition: color 500ms;
+      border: 1px solid var(--accent-color);
+      transition: border 500ms;
+    }
   }
 }
