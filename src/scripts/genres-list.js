@@ -15,5 +15,9 @@ import genres from "../data/genres.json"
       newList=newList.slice(0,2)
       newList.push("Other")
     }
+    if(newList.length===0)
+    {
+      newList.push("Other")
+    }
     return newList.join(", ");
   }
