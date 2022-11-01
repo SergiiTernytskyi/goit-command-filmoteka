@@ -20,4 +20,20 @@ body.dark-theme {
   & .tui-pagination {
     color: #ffffff;
   }
+
+  & .icon-light {
+    opacity: 0.4;
+  }
+
+  & .icon-dark {
+    opacity: 1;
+  }
+
+  .them-light-btn {
+    opacity: 0;
+  }
+
+  .them-dark-btn {
+    opacity: 1;
+  }
 }
