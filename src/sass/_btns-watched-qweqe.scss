@@ -16,16 +16,16 @@
 
   color: #ffffff;
   cursor: pointer;
-
-  &:not(:last-child) {
+  transition: color 500ms var(--timing-function),
+    border 500ms var(--timing-function);
+  s &:not(:last-child) {
     margin-right: 20px;
   }
 
   &:hover {
     color: darkgrey;
-    transition: color 500ms;
+
     border: 1px solid #ff6b08;
-    transition: border 500ms;
   }
 }
 

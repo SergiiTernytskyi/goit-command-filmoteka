@@ -54,7 +54,6 @@ export function loadAllFilms() {
 }
 export function loadWatchedFilms() {
   const watchedFilms = load('watched') || [];
-  console.log(watchedFilms);
   if (watchedFilms.length !== 0) {
     refs.myLibraryFilmList.innerHTML = renderList(watchedFilms);
   } else {
