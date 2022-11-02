@@ -16,7 +16,7 @@ export function renderList(films) {
               film.poster_path
             }" alt="${
         film.title
-      }" onerror="this.onerror=null;this.src='https://ik.imagekit.io/tc8jxffbcvf/default-movie-portrait_EmJUj9Tda5wa.jpg?tr=fo-auto,di-';">
+      }" onerror="this.onerror=null;this.src='https://ik.imagekit.io/tc8jxffbcvf/default-movie-portrait_EmJUj9Tda5wa.jpg?tr=fo-auto,di-';" loading="lazy">
         </div>
         <h2 class="card__title">
         ${film.title}
