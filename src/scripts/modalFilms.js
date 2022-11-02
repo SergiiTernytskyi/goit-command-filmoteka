@@ -2,21 +2,22 @@ import findTrailer from './trailer';
 import { setupModalButtons } from './filmmodal';
 import { MoviesApiService } from './api-work/apiServise';
 import { spinerPlay, spinerStop } from './helpers/spin-ner';
+import { refs } from './refs';
 
-const refs = {
-  filmList: document.querySelector('.gallery'),
-  modalBackdrop: document.querySelector('.backdrop-film-modal'),
-  closeFilmModalBtn: document.querySelector('.close-btn-js'),
-  body: document.querySelector('body'),
-  filmContainer: document.querySelector('.film-modal__container'),
+// const refs = {
+//   // filmList: document.querySelector('.gallery'),
+//   // modalBackdrop: document.querySelector('.backdrop-film-modal'),
+//   // closeFilmModalBtn: document.querySelector('.close-btn-js'),
+//   // body: document.querySelector('body'),
+//   // filmContainer: document.querySelector('.film-modal__container'),
 
-  filmItem: document.querySelector('.card__item'),
-  openTrailerBtn: document.querySelector('.open-trailer-btn'),
-};
+//   // filmItem: document.querySelector('.card__item'),
+//   // openTrailerBtn: document.querySelector('.open-trailer-btn'),
+// };
 
 const moviesApiService = new MoviesApiService();
 
-refs.filmList.addEventListener('click', onFilmOpen);
+refs.list.addEventListener('click', onFilmOpen);
 
 async function onFilmOpen(event) {
   if (event.target.nodeName === 'UL') {
@@ -39,6 +40,7 @@ async function onFilmOpen(event) {
     const markupFilm = createMarkup(film);
 
     refs.filmContainer.innerHTML = markupFilm;
+    setupModalButtons(filmInfo);
   } catch (error) {
     console.log(error);
   } finally {
@@ -54,7 +56,7 @@ async function onFilmOpen(event) {
 
 refs.closeFilmModalBtn.addEventListener('click', onCloseFilmModal);
 
-function onCloseFilmModal(event) {
+function onCloseFilmModal() {
   window.removeEventListener('keydown', onEscPress);
   refs.modalBackdrop.classList.add('is-hidden');
   document.body.style.overflow = 'scroll';
@@ -150,14 +152,19 @@ function createMarkup(film) {
     </div>`;
   return markupFilm;
 }
-const body = document.querySelector('body');
+
 refs.filmContainer.addEventListener('click', openTrailer);
 
-function openTrailer(e) {
+async function openTrailer(e) {
   if (e.target.nodeName === 'path' || e.target.nodeName === 'IMG') {
     const key = e.target.parentElement.parentElement.dataset.filmid;
     console.dir(key);
-    findTrailer(key).then(data => body.insertAdjacentHTML('afterbegin', data));
+    try {
+      const data = await findTrailer(key);
+      refs.body.insertAdjacentHTML('afterbegin', data);
+    } catch {
+      console.log(error);
+    }
     window.addEventListener('click', closeBackdropTrailer);
     window.addEventListener('keydown', onEscCloseTrailer);
     window.removeEventListener('keydown', onEscPress);
