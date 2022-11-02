@@ -44,7 +44,7 @@ function onOpenTeamModal() {
   setTimeout(stars, 200);
 
   refs.teamModal.classList.remove('is-hidden');
-  refs.body.classList.add('no-scroll');
+  document.body.style.overflow = 'hidden';
   window.addEventListener('keydown', onEscPress);
 }
 
