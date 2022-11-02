@@ -19,12 +19,6 @@ export class MoviesApiService {
   #year = '';
   #sort = '';
 
-  //   constructor() {
-  //     this.page = 1;
-  //     this.searchQuery = ' ';
-  //     this.id = ' ';
-  //   }
-
   async fetchTrendData() {
     try {
       const { data } = await axios.get(

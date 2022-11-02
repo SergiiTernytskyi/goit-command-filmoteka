@@ -31,4 +31,9 @@ export const refs = {
   filmContainer: document.querySelector('.film-modal__container'),
   filmItem: document.querySelector('.card__item'),
   openTrailerBtn: document.querySelector('.open-trailer-btn'),
+
+  darkBtn: document.querySelector('.them-dark-btn'),
+  lightBtn: document.querySelector('.them-light-btn'),
+  lightIcon: document.querySelector('.icon-light'),
+  darkIcon: document.querySelector('.icon-dark'),
 };

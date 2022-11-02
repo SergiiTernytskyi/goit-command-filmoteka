@@ -4,17 +4,6 @@ import { MoviesApiService } from './api-work/apiServise';
 import { spinerPlay, spinerStop } from './helpers/spin-ner';
 import { refs } from './refs';
 
-// const refs = {
-//   // filmList: document.querySelector('.gallery'),
-//   // modalBackdrop: document.querySelector('.backdrop-film-modal'),
-//   // closeFilmModalBtn: document.querySelector('.close-btn-js'),
-//   // body: document.querySelector('body'),
-//   // filmContainer: document.querySelector('.film-modal__container'),
-
-//   // filmItem: document.querySelector('.card__item'),
-//   // openTrailerBtn: document.querySelector('.open-trailer-btn'),
-// };
-
 const moviesApiService = new MoviesApiService();
 
 refs.list.addEventListener('click', onFilmOpen);

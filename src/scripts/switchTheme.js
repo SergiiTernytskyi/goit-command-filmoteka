@@ -1,10 +1,4 @@
-const refs = {
-  body: document.querySelector('body'),
-  darkBtn: document.querySelector('.them-dark-btn'),
-  lightBtn: document.querySelector('.them-light-btn'),
-  lightIcon: document.querySelector('.icon-light'),
-  darkIcon: document.querySelector('.icon-dark'),
-};
+import { refs } from './refs';
 
 let savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
