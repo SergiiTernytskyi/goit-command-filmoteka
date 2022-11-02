@@ -50,7 +50,7 @@ function onOpenTeamModal() {
 
 function onCloseTeamModal() {
   refs.teamModal.classList.add('is-hidden');
-  refs.body.classList.remove('no-scroll');
+  document.body.style.overflow = 'scroll';
   window.removeEventListener('keydown', onEscPress);
 }
 
