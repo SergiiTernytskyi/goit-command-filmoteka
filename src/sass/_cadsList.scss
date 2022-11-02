@@ -45,6 +45,7 @@
 }
 .card__img {
   border-radius: 5px;
+  object-fit: cover;
 
   @include tablet {
     width: 336px;
