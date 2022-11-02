@@ -1,5 +1,15 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
 
+@keyframes Opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -11,6 +21,9 @@ body {
   min-height: 100vh;
 
   font-family: 'Roboto', sans-serif;
+
+  animation-name: Opacity;
+  animation-duration: 2s;
 
   &::-webkit-scrollbar {
     width: 10px;
