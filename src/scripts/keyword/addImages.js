@@ -1,11 +1,12 @@
 import { refs } from '../refs';
+import photoCat from '../../images/catbig.jpg';
 
 const elem = document.createElement('img');
-const srcImg =
-  'https://funart.pro/uploads/posts/2021-07/1626947950_4-funart-pro-p-kot-shrek-glaza-zhivotnie-krasivo-foto-4.jpg';
+const srcImg = photoCat;
 elem.setAttribute('src', srcImg);
 elem.setAttribute('alt', 'Cat with big eyes');
 elem.id = '124';
+console.log(srcImg);
 
 export function addImageNoResult() {
   if (elem.id !== 124) {

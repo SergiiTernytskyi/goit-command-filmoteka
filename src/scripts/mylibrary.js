@@ -1,6 +1,9 @@
 import { save, load, remove } from './localestorageservices';
 import { refs } from './refs';
 import { renderList } from './render-list';
+import photoCat from '../images/catbig.jpg';
+
+const srcImg = photoCat;
 
 function toggleItems(film, storageKey) {
   let storedItems = load(storageKey);
@@ -49,7 +52,7 @@ export function loadAllFilms() {
     refs.myLibraryFilmList.insertAdjacentHTML('beforeend', renderList(films));
   } else {
     refs.myLibraryFilmList.innerHTML =
-      '`<span class="empty-library-title">No movies added here yet  <span>😟</span></span><img src="https://funart.pro/uploads/posts/2021-07/1626947950_4-funart-pro-p-kot-shrek-glaza-zhivotnie-krasivo-foto-4.jpg" alt="Cat with big eyes" id="124" class="show">`';
+      `<span class="empty-library-title">No movies added here yet  <span>😟</span></span><img src=${srcImg} alt="Cat with big eyes" id="124" class="show">`;
   }
 }
 export function loadWatchedFilms() {
@@ -58,7 +61,7 @@ export function loadWatchedFilms() {
     refs.myLibraryFilmList.innerHTML = renderList(watchedFilms);
   } else {
     refs.myLibraryFilmList.innerHTML =
-      '`<span class="empty-library-title">Watched movies list is empty  <span>😟</span></span><img src="https://funart.pro/uploads/posts/2021-07/1626947950_4-funart-pro-p-kot-shrek-glaza-zhivotnie-krasivo-foto-4.jpg" alt="Cat with big eyes" id="124" class="show">`';
+      `<span class="empty-library-title">Watched movies list is empty  <span>😟</span></span><img src=${srcImg} alt="Cat with big eyes" id="124" class="show">`;
   }
 }
 
@@ -68,7 +71,7 @@ export function loadQueuedFilms() {
     refs.myLibraryFilmList.innerHTML = renderList(queuedFilms);
   } else {
     refs.myLibraryFilmList.innerHTML =
-      '`<span class="empty-library-title">Movies queue is empty  <span>😟</span></span><img src="https://funart.pro/uploads/posts/2021-07/1626947950_4-funart-pro-p-kot-shrek-glaza-zhivotnie-krasivo-foto-4.jpg" alt="Cat with big eyes" id="124" class="show">`';
+      `<span class="empty-library-title">Movies queue is empty  <span>😟</span></span><img src=${srcImg} alt="Cat with big eyes" id="124" class="show">`;
   }
 }
 

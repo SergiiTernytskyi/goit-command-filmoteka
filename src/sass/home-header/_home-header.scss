@@ -56,20 +56,14 @@
        background-repeat: repeat-x;
        background-size: contain;
        background-repeat: repeat;
-      //  background-image: linear-gradient(to right,
-      //      rgba(0, 0, 0, 0.56),
-      //      rgba(0, 0, 0, 0.56)),
-      //    url(../images/background/homedesktop.jpg);
+      
   
   
        @include retina {
          background-repeat: repeat-x;
          background-size: contain;
          background-repeat: repeat;
-        //  background-image: linear-gradient(to right,
-        //      rgba(0, 0, 0, 0.56),
-        //      rgba(0, 0, 0, 0.56)),
-        //    url(../images/background/homedesktop2x.jpg);
+        
        }
      }
 }
