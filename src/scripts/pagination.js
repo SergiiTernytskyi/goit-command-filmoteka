@@ -32,11 +32,11 @@ async function paginationSetup(page, totalItems) {
     usageStatistics: false,
 
     template: {
-      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+      page: '<a href="#" class="tui-page-btn" aria-label="page {{page}}">{{page}}</a>',
       currentPage:
         '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
       moveButton:
-        '<a href="#" class="tui-page-btn tui-{{type}}">' +
+        '<a href="#" class="tui-page-btn tui-{{type}}" aria-label="button tui-{{type}}">' +
         `<svg class="tui-ico-{{type}}" width="16" height="16"><use href="${arrowIcon}-{{type}}"></use></svg>` +
         '</a>',
       disabledMoveButton:
@@ -44,7 +44,7 @@ async function paginationSetup(page, totalItems) {
         '<span class="tui-ico-{{type}}">{{type}}</span>' +
         '</span>',
       moreButton:
-        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip" aria-label="button tui-{{type}}">' +
         `<svg class="tui-ico-ellip" width="14" height="14"><use href="${dotsIcon}"></use></svg>` +
         '</a>',
     },

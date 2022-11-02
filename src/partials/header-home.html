@@ -5,8 +5,16 @@
         <use href="./images/sprite.svg#icon-moon"></use>
       </svg>
       <div class="them-btn-wraper">
-        <button type="button" class="them-btn them-dark-btn"></button>
-        <button type="button" class="them-btn them-light-btn"></button>
+        <button
+          type="button"
+          class="them-btn them-dark-btn"
+          aria-label="choose dark-theme"
+        ></button>
+        <button
+          type="button"
+          class="them-btn them-light-btn"
+          aria-label="choose light theme"
+        ></button>
       </div>
       <svg class="switch-icon icon-light" width="20" height="20">
         <use href="./images/sprite.svg#icon-sun"></use>
@@ -46,7 +54,7 @@
         type="text"
         placeholder="Movie search"
       />
-      <button class="input-btn" type="submit">
+      <button class="input-btn" type="submit" aria-label="search movie by name">
         <svg class="input-btn__icon">
           <use href="/src/images/sprite.svg#search "></use>
         </svg>
