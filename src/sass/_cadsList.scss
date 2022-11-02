@@ -126,6 +126,7 @@
   flex-direction: column;
 
   margin-bottom: 20px;
+  color: var(--main-dark-color);
 }
 
 .toggler input {
@@ -137,7 +138,7 @@
   margin: 0 0 10px;
 
   @include font(500, 16px, 1.33);
-  color: var(--main-dark-color);
+  color: inherit;
 }
 
 .label {
@@ -178,12 +179,12 @@
   transition: transform 200ms ease;
 }
 
-.text {
+.toggle-text {
   display: inline-block;
   width: 40px;
   font-size: 16px;
   text-align: center;
-  color: #a19f9f;
+  color: inherit;
 
   border-radius: 5px;
 }
@@ -199,11 +200,35 @@ input:checked + .toggler__box::before {
 }
 
 .toggle-day--active {
-  color: var(--accent-color);
+  position: relative;
+  &::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+
+    display: inline-block;
+    content: '';
+    width: 100%;
+    height: 3px;
+
+    background-color: var(--accent-color);
+  }
 }
 
 .toggle-week--active {
-  color: var(--accent-color);
+  position: relative;
+  &::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+
+    display: inline-block;
+    content: '';
+    width: 100%;
+    height: 3px;
+
+    background-color: var(--accent-color);
+  }
 }
 
 .toggler-hidden {
