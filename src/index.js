@@ -1,4 +1,3 @@
-// import './library.js';
 import 'animate.css/animate.css';
 import './scripts/render-list';
 import './scripts/genres-list';
@@ -6,9 +5,7 @@ import './scripts/keyword/seachKeyword';
 import './scripts/trailer';
 import './scripts/btnToTop';
 import './scripts/modalFilms';
-// import './js/modalFilm';
 import './scripts/team-modal';
 import './scripts/switchTheme';
-// import './js/spinner';
 import './scripts/pagination';
 import './scripts/filter';
