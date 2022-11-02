@@ -5,8 +5,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  opacity: 1;
-  visibility: visible;
+
   transition: opacity 300ms var(--timing-function),
     visibility 300msvar (--timing-function);
 }
