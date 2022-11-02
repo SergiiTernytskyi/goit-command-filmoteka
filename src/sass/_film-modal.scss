@@ -5,10 +5,15 @@
   position: fixed;
   top: 0;
   left: 0;
-  transition: opacity 300ms, visibility 300ms;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 300ms var(--timing-function),
+    visibility 300msvar (--timing-function);
 }
 
 .backdrop-film-modal.is-hidden .film-modal {
+  opacity: 0;
+  visibility: hidden;
   transform: translate(-50%, -50%) scale(1);
 }
 

@@ -15,10 +15,6 @@
   position: relative;
   overflow-y: auto;
 
-  transition: transform 500ms var(--timing-function),
-    opacity 500ms var(--timing-function),
-    visibility 500ms var(--timing-function);
-
   margin-right: auto;
   margin-left: auto;
 
