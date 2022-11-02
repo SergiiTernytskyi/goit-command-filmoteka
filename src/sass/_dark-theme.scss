@@ -91,4 +91,12 @@ body.dark-theme {
       transition: border 500ms;
     }
   }
+
+  & .section-library {
+    background-color: rgb(57, 55, 55);
+  }
+
+  & .empty-library-title {
+    color: var(--main-light-color);
+  }
 }
