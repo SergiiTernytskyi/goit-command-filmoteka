@@ -6,7 +6,6 @@ const srcImg = photoCat;
 elem.setAttribute('src', srcImg);
 elem.setAttribute('alt', 'Cat with big eyes');
 elem.id = '124';
-console.log(srcImg);
 
 export function addImageNoResult() {
   if (elem.id !== 124) {
