@@ -21,6 +21,8 @@ export const refs = {
   toggler: document.querySelector('#switch'),
   dayBtn: document.querySelector('#text-day'),
   weekBtn: document.querySelector('#text-week'),
+  homeLink: document.querySelector('.header-menu__link'),
+  logoLink: document.querySelector('.logo'),
 
   openModalLink: document.querySelector('.footer-content__link'),
   closeModalBtn: document.querySelector('.modal-team__close-btn'),

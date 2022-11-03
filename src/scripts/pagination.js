@@ -58,6 +58,7 @@ async function paginationSetup(page, totalItems) {
 
       try {
         moviesApiService.page = event.page;
+        save('currentPage', moviesApiService.page);
         const data = await moviesApiService.fetchTrendData();
 
         renderGallery(data.results);
@@ -72,6 +73,7 @@ async function paginationSetup(page, totalItems) {
 
       try {
         moviesApiService.page = event.page;
+        // load('currentPage', moviesApiService.page);
         const data = await moviesApiService.fetchMovieByWord();
 
         renderGallery(data.results);
@@ -85,6 +87,7 @@ async function paginationSetup(page, totalItems) {
       spinerPlay();
       try {
         moviesApiService.page = event.page;
+        // load('currentPage', moviesApiService.page);
         const data = await moviesApiService.fetchFilterMovie();
         renderGallery(data.results);
         longify(onToTopBtn);
@@ -299,7 +302,12 @@ async function openListSort(e) {
 async function pageRender() {
   spinerPlay();
   try {
-    moviesApiService.resetPage();
+    if (load('currentPage')) {
+      moviesApiService.page = load('currentPage');
+    } else {
+      moviesApiService.resetPage();
+    }
+
     const data = await moviesApiService.fetchTrendData();
     moviesApiService.totalResults = data.total_results;
 
@@ -330,7 +338,13 @@ function togglerHandler() {
   }
 }
 
+function backToFirstPage() {
+  save('currentPage', 1);
+}
+
 pageRender();
 refs.form.addEventListener('submit', onSearch);
 refs.toggler.addEventListener('change', togglerHandler);
 refs.filterForm.addEventListener('input', openListSort);
+refs.homeLink.addEventListener('click', backToFirstPage);
+refs.logoLink.addEventListener('click', backToFirstPage);
