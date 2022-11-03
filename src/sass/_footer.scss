@@ -1,5 +1,4 @@
 footer {
-  background-color: #f7f7f7;
   text-align: center;
   padding-top: 29px;
   padding-bottom: 29px;
@@ -14,12 +13,12 @@ footer {
     line-height: 1.18;
   }
 
-  color: #545454;
+  color: inherit;
 }
 
 .footer-content__link {
   color: inherit;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 300ms var(--timing-function);
 
   &:hover,
   &:focus {
