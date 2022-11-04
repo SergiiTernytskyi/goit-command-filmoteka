@@ -12,7 +12,7 @@ export function renderList(films) {
         film.id
       }">
         <div class="card__thumb">
-            <img class="card__img" src="https://image.tmdb.org/t/p/w400${
+            <img class="card__img" src="https://image.tmdb.org/t/p/w500${
               film.poster_path
             }" alt="${
         film.title
