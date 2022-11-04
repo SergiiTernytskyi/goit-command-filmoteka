@@ -27,13 +27,6 @@ function stars() {
   });
 }
 
-// function showConfetti() {
-//   confetti.create(document.getElementById('canvas'), {
-//     resize: true,
-//     useWorker: true,
-//   })({ particleCount: 200, spread: 200, zIndex: 2021});
-// }
-
 refs.openModalLink.addEventListener('click', onOpenTeamModal);
 refs.closeModalBtn.addEventListener('click', onCloseTeamModal);
 refs.teamModal.addEventListener('click', onBackdropClickClose);

@@ -73,7 +73,6 @@ async function paginationSetup(page, totalItems) {
 
       try {
         moviesApiService.page = event.page;
-        // load('currentPage', moviesApiService.page);
         const data = await moviesApiService.fetchMovieByWord();
 
         renderGallery(data.results);
@@ -87,7 +86,6 @@ async function paginationSetup(page, totalItems) {
       spinerPlay();
       try {
         moviesApiService.page = event.page;
-        // load('currentPage', moviesApiService.page);
         const data = await moviesApiService.fetchFilterMovie();
         renderGallery(data.results);
         longify(onToTopBtn);
